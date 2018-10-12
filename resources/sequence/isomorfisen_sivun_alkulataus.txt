@@ -1,0 +1,10 @@
+title Isomorfisen sivun alkulataus
+actor Selain
+
+Selain->Palvelin:Hae **etusivu.html
+Palvelin->JavaScript-ohjelmistokehys:Prosessoi sivupyyntö
+JavaScript-ohjelmistokehys->Palvelin: Palauta käsitelty **etusivu.html
+Palvelin->Selain: Palauta sivupyynnön vaste (text/html)
+==Sivupyyntö valmis==
+Selain<->JavaScript-ohjelmistokehys: Tee toiminto X
+note over Selain,JavaScript-ohjelmistokehys:Käytetään samaa JavaScript-ohjelmistokehystä, mitä palvelimella

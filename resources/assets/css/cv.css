@@ -1,0 +1,109 @@
+
+
+.content {
+    display: grid;
+    width: 90%;
+    margin: 3em;
+}
+
+
+.grid-header {
+    text-align: center;
+    grid-template-columns: 2fr;
+}
+
+.grid-cv {
+    grid-template-columns: 1fr 3fr;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.grid-experience {
+    grid-template-columns: 1fr;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+.grid-technology {
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.grid-category{
+    grid-template-columns: 1fr 3fr;
+}
+
+.grid-skill {
+    grid-template-columns: 3fr 2fr;
+    margin-bottom: 1em;
+
+}
+
+.grid-education-item {
+    grid-template-columns: 1fr 3fr;
+    margin-bottom: 1em;
+}
+
+.grid-cv > div:nth-child(2) {
+    margin-top: 1em;
+}
+
+.remove-margin-top {
+    margin-top: 0;
+}
+
+.mb-1 {
+    margin-bottom: 1em;
+}
+
+.grid-projects {
+    grid-template-columns: 1fr;
+}
+
+.grid-project {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+.grid-project-desc {
+    grid-template-columns: 1fr 3fr;
+}
+
+.grid-title h3 {
+    margin-bottom: .5em;
+}
+
+.grid-certificate {
+    grid-template-columns: 1fr 1fr;
+}
+
+@media print {
+
+    @page {
+        margin: 0;
+    }
+
+    body {
+        margin: 1.6cm;
+        padding-top: 15mm;
+    }
+
+    .page-break {
+        page-break-before: always;
+        margin-top: 1.6cm;
+    }
+
+    .page-section-break {
+        page-break-before: always;
+        margin-top: 3.2cm;
+    }
+
+
+    a, .page-header, footer {
+        display: none;
+    }
+
+
+}
+
+

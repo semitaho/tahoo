@@ -1,0 +1,190 @@
+<h2>Taustaa</h2>
+<p>Vielä 2000-luvun vaihteessa ei tunnettu käsitettä <em>Web-sovellus</em>, puhuttiin <em>työpöytäsovelluksista</em>. Tämän tyyppiset
+    sovellukset olivat Java Swing -tekniikalla toteutettuja - myös Object Pascal -kieltä käytettiin sekä C:tä. Kyseisten sovellusten
+    siirrettävyys eri ympäristöihin oli heikkoa johtuen sovellusten <em><a href="https://en.wikipedia.org/wiki/Fat_client">Fat client
+        -keskeisyydestä.</a></em></p>
+
+<h2>Terminologiaa</h2>
+<p>Ennen kuin menen syvemmälle blogitekstissäni, on syytä määritellä muutama termi, jota tulen käyttämään:
+<ul>
+    <li><b>SPA</b>
+        <ul>
+            <li><em>Single-Page Application</em>, jolla tarkoitetaan sitä, että palvelimelta haetaan yksi html-sivu selaimelle, joka
+                sisältää kaiken tarvittavan tiedon sovelluksen alustukseen. Tällä pyritään tarjoamaan varsin käyttäjäystävällisen
+                kokemuksen, koska sivuja ei erikseen tarvitse ladata palvelinpäästä.
+            </li>
+        </ul>
+    </li>
+
+    <li><b>MPA</b>
+        <ul>
+            <li><em>Multiple-Page Application</em>, perinteinen ja johdonmukainen tapa Web-kehityksessä. Haetaan jokainen sivu palvelimelta
+                erikseen, mikä mahdollistaa palvelinpään renderöinnin suoraan selaimelle. Myös erilaisten lomakkeiden lähetys kierrättää
+                koko sivun aina palvelimen kautta, jossa suoritetaan toiminto perustuen sivupyyntöön.
+            </li>
+            <li>Vastakohta SPA-sovellukselle siinä määrin, että selain saa täysin valmiin sivun sen sijaan, että prosessoisi itse
+                liiketoimintalogiikan ja renderöisi sivun perustuen käytössäolevaan JavaScript-sovelluskehykseen.
+            </li>
+        </ul>
+    </li>
+    <li><b>Universaali sovellus</b>
+        <ul>
+            <li>Käytetään myös nimitystä <em>isomorfinen sovellus</em>. Yhdistää MPA:n että SPA:n. Ideana ladata palvelimelta valmiiksi
+                renderöity ja koostettu html-sivu siten, että sivuun on sisällytetty JavaScript-pätkiä, joka mahdollistaa liiketoiminnan
+                jatkojalostamisen selaimessa.
+            </li>
+            <li>Universaalisuus tulee siitä, että voidaan käyttää samaa koodia sekä palvelimella että selaimella</li>
+
+        </ul>
+    </li>
+
+</ul>
+</p>
+<p>Kuulostaako monimutkaiselta? Avaan seuraavassa osiossa tarkemmin käsitteitä.</p>
+
+<h2>SPA</h2>
+<p>Tässä tekniikassa palvelimen rooli on vähäinen verrattuna selaimeen. </p>
+
+<p>Oletetaan, että noudamme <em>index.html</em>-sivun palvelimelta. Mitä esim. verkkoliikenteessä tapahtuu? Google Chromen debuggauskonsoli
+    näyttää parhaimmassa tapauksessa vain yhden sivustopyynnön index.html. Ja jos hyvin käy, sivustoon on upotettu koko sovelluksen
+    JavaScript, tyylit ja muut lisäresurssit, joita käytetään. Mutta tämä tuskin pitää paikkansa. Yleisesti voidaan kuvitella homman menevän
+    suunnilleen näin:
+
+<ol>
+    <li>Haetaan index.html:n raaka versio selaimelle.</li>
+    <li>Selain tutkii sivun skriptitägit, joiden perusteella suorittaa lisähakuja; haut voidaan tehdä samalta palvelimelta, mutta myös
+        erillisistä verkkosijainneista.
+    </li>
+    <li>Selain suorittaa skriptit tai API-kutsut muodostaakseen lopullisen version sivusta</li>
+    <li>Sivu renderöidään käyttäjälle</li>
+</ol>
+</p>
+<p>Edellinen työnkulku sisältää paljon dynaamisuutta, datan prosessointia, mikä myös aiheuttaa sen, että loppukäyttälle jää varsin
+    käyttäjäystävällinen kuva sivustosta. Eri toiminnot suoritetaan vain yksittäin, jolloin koko sivua ei tarvitse uudelleen renderöidä,
+    vain tarvittavat API-kutsut tehdään, mutta suurin osa liiketoimintalogiikasta tehdään selaimessa ilman etäkäsittelyä. Lähinnä tiedon
+    persistointi ja etähaut aiheuttavat verkkoliikennettä. Tämä kehitystapa muistuttaa hyvin paljon nykyaikaisten mobiilisovellusten
+    tekoa. </p>
+<p>Rohkeimmat kehittäjät ovat lähteneet rakentamaan SPA-teknologialla hyvinkin selainlähtöistä sovellusta, mutta tässä täytyy muistaa ottaa
+    <em>tietoturva</em> huomioon. Palvelintapahtumat ovat näkymättömiä käyttäjille, mutta selaimesta pystytään helposti saamaan JavaScript
+    parsittua, ja vaikka koodi olisi minimoitu, selaimen <em>pretty-print</em> toiminto auttaa tässäkin.</p>
+
+<h2>MPA</h2>
+<p>Ennen JavaScript-vallankumousta vuosina 2000-2010 tehtiin Web-sovellukset MPA-tekniikalla. Tässä ratkaisussa backend oli kaiken kuningas
+    ja hyvistä palvelinpään koodaajista oli kysyntää. Hyvin pitkälle viety ajatus oli se, että kieli sisälsi jonkin ohjelmistoframeworkin,
+    joka hoiti kaiken Model-View-Controller käsittelyn. Tässä View-prosessointi tehtiin etukäteen palvelinpäässä ja vaikka kehittäjälle
+    muokattava sivufragmentti saattoi muistuttaa hyvinkin paljon nykypäivän JavaScript-kielien asiakaspäähän tehtyjä View-ratkaisuja, oli
+    kyseessä kuitenkin kokonaan eri asia. JavaScriptia käytettiin hyvin vähän, yksittäinen toiminto johti aina sivun lataamiseen uudestaan.
+    Jos vaikka haluttiin saada taulukon rivi muokattavaksi, lähetettiin lomakekutsussa rivin tunniste, mitä haluttiin muokata, prosessointi
+    tehtiin palvelinpäässä sopivilla loogisilla ehdoilla, jolla rivistä saatiin muokattava. Loppujen lopuksi kyse oli siitä, että palvelin
+    lähetti vastauksena lukuisia versioita samasta html-sivusta perustuen aina siihen, mitä käyttäjä halusi tekevän. Tällaisia ratkaisuja
+    tarjosivat JSF (Java Server Faces) sekä Struts -ohjelmistokehykset, muun muassa.</p>
+<p>Mutta edellinen ratkaisu kuitenkin oli merkittävä askel eteenpäin, sillä jo vuonna 2005 kaikissa virastoissa oli Web-selain ja koska
+    sovellus sijaitsi yhdessä paikassa, päästiin selaimella navigoimaan ko. osoitteeseen. Sovelluspäivitykset tehtiin vain yhteen
+    paikkaan.</p>
+<p>Siihen aikaan oli toki JavaScript olemassa, mutta sitä kummaksuttiin kehittäjien keskuudessa; matalastityypitetty kieli, joka aiheuttaa
+    virheitä. Tosiasiassa kuitenkin käytössä olevat palvelin-frameworkit eivät juurikaan tukeneet tätä.</p>
+
+<h2>Universaali/isomorfinen sovellus</h2>
+<p>Otetaan esimerkkinä Web-sovellus, joka on toteutettu isomorfisella menetelmällä:
+    <figure>
+        <img src="/resources/assets/images/blog/isomorphic.png" alt="Kuva isomorfisen sivun alkulatauksesta"/>
+        <figcaption>Kuva 1: Isomorfisen Web-sovelluksen alkulataus.</figcaption>
+    </figure>
+</p>
+<p>Kuten kuvasta nähdään, datan prosessointia tapahtuu sekä selain- että palvelinpäässä. Käyttäjälle tämä näkyy siten, että valmis Web-sivu
+    ladataan selaimelle, mutta kuitenkin <em>JavaScript-valmiuksilla höystettynä</em>. Tästä eteenpäin toiminnot suoritetaan valitun
+    JavaScript-frameworkin kautta, jota siis jo käytettiin palvelinpäässä. Kätevää!</p>
+
+<h2>Vertailua</h2>
+<p>No mitä ratkaisua tulisi käyttää missäkin tilanteessa? Seuraavaan taulukkoon olen koonnut erilaiset toiminnot ja vertaillut kolmea eri
+    menetelmää:
+
+<table>
+    <thead>
+    <tr>
+        <th/>
+        <th>SPA</th>
+        <th>MPA</th>
+        <th>Polymorfinen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>Kehittäjäprofiili
+        </td>
+        <td>Frontend-kehittäjä rakastaa tätä. Minimaalinen määrä backend-koodia, joka voidaan toteuttaa hyvinkin nopealla tavalla, nykyään
+            myös ilman erillistä palvelininfraa, esim. <em>serverless</em>.
+        </td>
+        <td>Backend-kehittäjille sopiva malli, mutta myös Full Stack -kehittäjille, jotka omaavat kyvyn rakentaa käyttöliittymiä palasista
+            tarjolla olevasta palvelinframeworkista.
+        </td>
+        <td>Full Stack -kehittäjille oiva ratkaisu. Tarvitaan kykyä taitaa Frontend ja Backend -ohjelmointi.</td>
+    </tr>
+    <tr>
+        <th>Toteutuksen vaikeusaste</th>
+        <td>Näppärät Frontend-kehittäjät pääsevät nopeasti sinuiksi tähän malliin. Nykyään myös Backend-kehittäjät, sillä SPA:n frameworkit
+            tukevat komponenttien luokkamallia, joka muistuttaa perinteisten oliokielten mallia.></td>
+        <td>Juniori-kehittäjille voi tulla yllätyksenä se, kuinka paljon asioita sovelluspalvelimeen täytyy toteuttaa. Väitän, että kokeneet kehittäjät omaksuvat tämän mallin parhaiten.
+
+        </td>
+        <td>Vaikein kehittää. Tarvitaan paitsi JavaScriptin osaamista, myös HTTP-protokollan toimintaperiaatteiden perustuntemista. Lisäksi harva sovellusframework tukee
+            isomorfisen sovelluksen toteutusta. Tästä kuitenkin löytyy esimerkki vaikka <a href="https://medium.com/capital-one-developers/why-everyone-is-talking-about-isomorphic-universal-javascript-and-why-it-matters-38c07c87905" target="_blank">täältä</a>.</td>
+    </tr>
+    <tr>
+
+        <th>Suorituskyky</th>
+        <td>Koska datan prosessointi tehdään pääosin selaimessa, on suorituskyky kohdallaan tässä ratkaisussa. Toki selain tekee eri
+            toimintojen kautta useita verkkokutsuja, mutta ne koskevat yksittäisiä toimintoja REST-rajapinnan kautta.
+        </td>
+        <td>Alkulatauksessa tehdään yksi iso palvelinkutsu, mutta mitä enemmän käyttäjiä hakee sivuja, sitä enemmän palvelin kuormittuu.
+            Skaalautuvuuden tulee olla kunnossa. Lisäksi yksittäiset toiminnot aiheuttavat round-trip kutsuja palvelimelle.
+        </td>
+        <td>Parhaan suorituskyvyn omaava ratkaisu. Alkulatauksessa haetaan yksi sivu ja sen jälkeen yksittäiset toiminnot tehdään REST apin
+            kautta. Vain alussa palvelin kuormittuu.
+        </td>
+    </tr>
+    <tr>
+        <th>Turvallisuusaspekti</th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Web-sivuston näkyvyys hakukoneessa</th>
+        <td>Googlen hakurobotti ei pysty täydellisesti käsittelemään JavaScriptia. Tämän vuoksi olisi hyvä, että sivuista olisi olemassa
+            "hakukoneystävälliset" versiot, jos halutaan lisätä näkyvyyttä
+        </td>
+        <td>Sopii täydellisesti hakukoneoptimointiin, koska sivut muodostetaan palvelimella, jolloin Googlen hakurobotin on helpompi löytää
+            sivut.
+        </td>
+        <td>Sopii myös hyvin hakukoneoptimointiin. Alkulataus huolehtii siitä, että sivut muodostetaan oikeaoppisesti palvelinpäässä, eikä
+            myöhemmin suoritettava JavaScript häiritse hakukonetta, jos sivusto on koodattu oikein
+        </td>
+    </tr>
+    </tbody>
+
+
+</table>
+
+
+</p>
+
+<h2>Soveltuvuus</h2>
+<p>Entä minkälaisen Web-sovelluksen tekemiseen mikäkin ratkaisu soveltuu parhaiten?</p>
+<p>Jos olet pelkkiä kotisivuja tekemissä ja panostat näkyvyyteen, MPA soveltuu parhaiten. Sivusto, jossa esittelet itsesi, yrityksesi ja kerrot,
+mitä teet, on hyvinkin tärkeää, että hakukonerobotti löytää tekstisi, kun sivua indeksoidaan. Jos haluat sivuillesi lisätä toimintoja, universaali toteutustapa
+voisi tulla tällöin kyseeseen. Myös kaikennäköiseen staattisen sisällön julkaisuun, paljon tekstuaalista sisältöä omaaviin sivuihin MPA lienee paras vaihtoehto.</p>
+
+<p>Käytä SPA mallia, kun haluat panostaa sivustosi toimintoihin, ikään kuin sivustosi olisi natiivi mobiilisovellus. Jos haluat
+julkaista Web-sovelluksia ja -pelejä, toteuta SPA-mallilla. Lisäksi SPA on houkuttelevin vaihtoehto myös silloin, kun otetaan
+esim. uusi JavaScript-framework käyttöön, koska nämä sisältävät myös varsin usein oman sisäisen reitityksen sivulta toiselle joko
+    HTML5 tai hash-tekniikalla.</p>
+
+
+
+
+
+
+
+
+
+
+
