@@ -15,7 +15,6 @@ window.Vue = require('vue');
  */
 
 import ContactForm from './components/ContactForm';
-
 new Vue({
     render: h => h(ContactForm)
 }).$mount('#contact_form');

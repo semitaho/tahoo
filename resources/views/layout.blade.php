@@ -37,6 +37,7 @@
 
 </head>
 <body>
+@section('header')    
 <section class="page-header">
     <nav class="header-nav">
         <ul>
@@ -51,7 +52,7 @@
     <h1 class="project-name"><a href="{{ asset('/') }}">Taho Ohjelmistopalvelut</a></h1>
     <h2 class="project-tagline">Tehokasta ohjelmistokonsultointia jo yli 10 vuoden kokemuksella.</h2>
 </section>
-
+@show
 <div class="main-content">
 @section('content')
 This is the master sidebar.

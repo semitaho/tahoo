@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
             ['label' => 'Etusivu', 'path' => '/'],
             ['label' => 'Palvelut', 'path' => 'palvelut'],
             ['label' => 'CV', 'path' => 'cv'],
+            ['label' => 'Pelit', 'path' => 'pelit'],
             ['label' => 'Blogit', 'path' => 'blogit']
 
         ]);

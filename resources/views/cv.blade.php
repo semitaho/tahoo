@@ -19,7 +19,7 @@ CV
             <br/>
             <img class="cv-image" src="{{asset('/resources/assets/images/taho.jpg')}}">
             <br/>
-            @include('contact')
+            @include('contact-address')
 
         </div>
 

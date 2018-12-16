@@ -1,4 +1,3 @@
-import SuiVue from 'semantic-ui-vue';
 
 window._ = require('lodash');
 window.Popper = require('popper.js').default;

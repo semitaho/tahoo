@@ -25,6 +25,7 @@ Route::get('/blogit', 'BlogController@index')->name('blogs');
 
 Route::view('/palvelut', 'services');
 
+Route::view('/pelit', 'pelit');
 
 
 Route::get('/blogit/{entryid}', 'BlogController@fetch');
