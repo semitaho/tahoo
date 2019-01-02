@@ -1,35 +1,23 @@
 <template>
 <div id="puzzle">
-  <start-screen :resume="resume" v-if="gamestate === STATE.start" @resumeGame="resumeGame"  :title="'Palapeli'" @start="startGame">
-    <p>Kokoa palapeli! Mitä vähemmän siirtoja käytät, sitä paremmin 
+  <start-screen :resume="resume" :disabled="!isSet" v-if="gamestate === STATE.start && user.id" @resumeGame="resumeGame"  :title="'Palapeli'" @start="startGame">
+    <p>Kokoa palapeli<b v-if="user.nick"> {{user.nick}}</b>! Mitä vähemmän siirtoja käytät, sitä paremmin 
       sijoitut tilastoissa.
+    </p>
+    <p v-if="!user.nick">
+      <input type="text" :value="user.nickInput" placeholder="Anna nimimerkkisi" @input="updateNick" />
     </p>
   </start-screen>
   <puzzle-level  v-else-if="gamestate === STATE.playing" />
   <div  id="level-finished" v-else-if="gamestate === STATE.finished">
-    <taho-modal>
+    <taho-modal @oncontinue="startLevel(puzzle.id+1)" @onrestart="startLevel(puzzle.id)" >
       <p>Käytit siirtoja: <b>{{siirrot}}</b></p>
-      <p>Aikaa kului: {{time}} s. </p>
+      <p>Aikaa kului: <b>{{time}} s.</b></p>
+      <p v-if="position">Pääsit sijalle <b>{{position}}.</b></p>
+      <p v-else>Et yltänyt TOP 5:een.</p> 
     </taho-modal>
-    <puzzle-level />
+    <puzzle-level :readonly="true" />
   </div>
- 
- 
-  <!--
-  
-  <taho-spinner v-if="loading" />
-  <div class="game-container"  v-else>
-    <h2>Palapeli</h2>
-    <b>Siirrot: {{siirrot}}</b>
-    <div id="puzzle-board-container" :style="{ paddingBottom: this.height+'%' }">
-      <div id="puzzle-board" :style="gridStyle">
-        <puzzle-item-container  :index="index"  :key="item.number"   v-for="(item,index) in container">
-          <puzzle-item v-if="item.image" :index="index" :key="item.image.number" :item="item.image"></puzzle-item>
-        </puzzle-item-container> 
-      </div>
-    </div>
-    </div>
-    -->
 </div>
 </template>
 <script>
@@ -58,11 +46,19 @@ export default {
       "gamestate",
       "siirrot",
       "time",
-      "resume"
+      "resume",
+      "user",
+      'position',
+      'puzzle',
+      'isSet'
     ]),
 
   },
-  methods: mapActions(['createBoard', 'insertItem', 'startGame', 'resumeGame'])
+  methods: mapActions(['createBoard', 'insertItem', 'startGame', 'resumeGame', 'startLevel', 'updateNick', 'retrieveUser']),
+
+  created() {
+    this.retrieveUser();
+  }
 
 
 };
@@ -74,6 +70,7 @@ export default {
   align-items: center;
   flex-direction: column;
 }
+
 
 #level-finished {
   width: 100%;

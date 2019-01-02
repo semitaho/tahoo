@@ -1,6 +1,5 @@
-
 import api from './../../services/api.service';
-import { STATE } from './../../constaints';
+import { STATE, LSKEY_LEVEL } from './../../constaints';
 const shuffle = imageArr => {
   for (let i = imageArr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -18,11 +17,14 @@ const state = {
   siirrot: 0,
   imageIndex: 0,
   time: 0,
-  interval : null,
+  interval: null,
+  puzzle: null,
   gamestate: STATE.start,
   level: null,
   image: null,
-  loading: true
+  position: null,
+  loading: true,
+  placed: false
 };
 
 const getters = {
@@ -36,10 +38,9 @@ const getters = {
   gamestate: state => state.gamestate,
   time: state => state.time,
   level: state => state.level,
-  resume: () => {
-    return true;
-
-  },
+  position: state => state.position,
+  placed: state => state.placed,
+  resume: state => !!localStorage.getItem(LSKEY_LEVEL),
   isValid: state => {
     return state.container.every(containerItem => containerItem.number === containerItem.image.number);
   }
@@ -60,7 +61,7 @@ const mutations = {
   },
 
   setContainer(state, payload) {
-    state.container = payload.slice();
+    state.container = payload;
   },
 
   setFly(state, image) {
@@ -79,7 +80,7 @@ const mutations = {
     state.level = num;
   },
 
-  setInterval(state, interval){
+  setInterval(state, interval) {
     state.interval = interval;
   },
 
@@ -93,6 +94,23 @@ const mutations = {
 
   setState(state, gamestate) {
     state.gamestate = gamestate;
+  },
+
+  setPosition(state, position) {
+    state.position = position;
+  },
+
+  setPlaced(state, placed) {
+    state.placed = placed;
+  },
+
+  clear(state) {
+    state.siirrot = 0;
+    state.time = 0;
+    state.height = 0;
+    state.imageIndex = 0;
+    state.position = null;
+    state.container = [];
   }
 
 };
@@ -101,15 +119,14 @@ const actions = {
 
   createBoard({ commit, getters }) {
     console.log('creating board...');
-    api.callGET('/puzzles/'+getters.level)
-      .then((data) => {
-        const { image, width, rows, cols } = data;
+    Promise.all([api.callGET('/puzzles/' + getters.level)])
+      .then(([data]) =>  {
+        const { image, rows, cols } = data;
         commit('setPuzzle', data);
         let img = new Image();
         img.src = image;
         img.onload = () => {
           const heightRatio = img.height / img.width;
-          console.log('ratio', heightRatio * 100);
           commit('setHeight', heightRatio * 100);
           let imageNumber = 1;
           let puzzleObjects = [];
@@ -136,12 +153,13 @@ const actions = {
           commit('setContainer', puzzleObjects);
           commit('setLoading', false);
 
-        }
+        };
       });
 
   },
 
   cancelDrag({ commit, state }, index) {
+    console.log('sänseling...');
     const newContainer = state.container.slice();
     newContainer[index].image = state.fly;
     commit('setContainer', newContainer);
@@ -155,17 +173,15 @@ const actions = {
     commit('setContainer', newContainer);
     commit('setFly', null);
     commit('addSiirto');
-    console.log('siirrot', state.siirrot);
     if (getters.isValid) {
-      setTimeout(() => { 
+      setTimeout(() => {
         dispatch('finishLevel');
-      }
-        , 500);
+      }, 1500);
     }
 
   },
 
-  finishLevel({commit, dispatch }) {
+  finishLevel({ commit, dispatch }) {
     clearInterval(interval);
     dispatch('saveGame');
     commit('setState', STATE.finished);
@@ -178,22 +194,54 @@ const actions = {
     commit('setContainer', containerCopy);
   },
 
-  saveGame({commit, getters, dispatch}) {
-    const saveObject ={
-      level: getters.level+1
-    };
-    //sessionStorage.saveGame(JSON.stringify(saveObject)); 
+  resumeGame({ dispatch }, index){
+    const level =  localStorage.getItem('level');
+    if (level){
+      console.log('on asetettu', level);
+      dispatch('startLevel', level);
+    }
 
   },
 
-  startGame({ commit, dispatch }) {
-    commit('setLoading', true);
-    commit('setLevel', 1);    
-    dispatch('createBoard');
+  saveGame({ commit, getters, dispatch }) {
+    const postObject = { 
+      user_id: getters.user.id, 
+      puzzle_id: getters.puzzle.id,
+      score: getters.siirrot,
+      time: getters.time
+    };
+    console.log(' saving', postObject);
+    api.callPOST('/puzzles/scores',postObject)
+      .then(data => {
+        console.log('top_scores', data);
+        const index = data.findIndex(item => item.user_id === postObject.user_id && item.puzzle_id === postObject.puzzle_id && item.score == postObject.score && item.time === postObject.time);
+        if (index > -11){
+          const position = index+1;
+          commit('setPosition', position);
+        }
+      });
+      if (getters.puzzle.hasNext){
+        localStorage.setItem('level', getters.puzzle.id+1);
+      }
+  },
+
+  startLevel({ commit, dispatch }, level){
+    commit('clear');
     commit('setState', STATE.playing);
-     interval = setInterval(() => {
+    commit('setLoading', true);
+    commit('setLevel', level);
+    dispatch('createBoard');
+    interval = setInterval(() => {
       commit('addTime', 1);
-    },1000);
+    }, 1000);
+  },
+  startGame({ commit, dispatch, getters }) {
+    localStorage.removeItem(LSKEY_LEVEL);
+    dispatch('startLevel', 1);
+    if (getters.user.nickInput){
+      dispatch('storeNick');
+    }
+    
   }
 };
 

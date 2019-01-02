@@ -16,11 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
 
         View::share('navigation', [
-            ['label' => 'Etusivu', 'path' => '/'],
-            ['label' => 'Palvelut', 'path' => 'palvelut'],
-            ['label' => 'CV', 'path' => 'cv'],
-            ['label' => 'Pelit', 'path' => 'pelit'],
-            ['label' => 'Blogit', 'path' => 'blogit']
+            ['label' => 'Etusivu', 'path' => '/', 'new' => false],
+          //  ['label' => 'Palvelut', 'path' => 'palvelut'],
+            ['label' => 'CV', 'path' => 'cv', 'new' => false],
+            ['label' => 'Pelit', 'path' => 'pelit', 'new' => true],
+            ['label' => 'Blogit', 'path' => 'blogit', 'new' => false]
 
         ]);
         //

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h2>Valitse peli</h2>
+  <h1>Valitse peli</h1>
   
   <div class="game-selector-container">
   <router-link class="game-selector" :to="peli.routeLink"  :key="peli.routeLink" v-for="peli in games">
