@@ -10,7 +10,8 @@
   </start-screen>
   <puzzle-level  v-else-if="gamestate === STATE.playing" />
   <div  id="level-finished" v-else-if="gamestate === STATE.finished">
-    <taho-modal @oncontinue="startLevel(puzzle.id+1)" @onrestart="startLevel(puzzle.id)" >
+    <taho-modal :hasNext="puzzle.hasNext" @oncontinue="startLevel(puzzle.id+1)" @onrestart="startLevel(puzzle.id)" >
+      <p v-if="!puzzle.hasNext"><b>Pelasit pelin läpi!</b></p>
       <p>Käytit siirtoja: <b>{{siirrot}}</b></p>
       <p>Aikaa kului: <b>{{time}} s.</b></p>
       <p v-if="position">Pääsit sijalle <b>{{position}}.</b></p>

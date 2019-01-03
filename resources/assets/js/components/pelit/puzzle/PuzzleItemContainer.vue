@@ -1,5 +1,5 @@
 <template>
-  <div class="puzzle-container" @drop.prevent="placeItem">
+  <div class="puzzle-container" @drop.prevent="placeItem" :style="style" >
     <slot></slot>
   </div>
   
@@ -9,8 +9,30 @@ export default {
   name: 'PuzzleItemContainer',
   props: {
     index: Number,
-    readonly: Boolean
+    readonly: Boolean,
+    item: Object,
   },
+
+  computed: {
+    style(){
+      const {row, col, rows, cols}  = this.item;
+      console.log('item', this.item);
+      const left =( col / cols * 100) + '%';
+      const top = (row / rows * 100) + '%';
+
+      const width = (100 / cols) + '%';
+      const height = (100 / rows) + '%';
+
+    return {
+        width,
+        height,
+        left,
+        top
+      };
+    }
+  },
+
+
   methods: {
 
     placeItem(event){
@@ -39,6 +61,7 @@ export default {
     border:1px groove #999;
     background-color: #eee;
     box-sizing: border-box;
+    position: absolute;    
   }
 
 </style>

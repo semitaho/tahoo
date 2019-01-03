@@ -134,7 +134,11 @@ const actions = {
           for (let rowPos = 0; rowPos < rows; rowPos += 1) {
             for (let colPos = 0; colPos < cols; colPos += 1) {
               const puzzleObject = {
-                number: imageNumber
+                number: imageNumber,
+                row: rowPos,
+                rows,
+                col: colPos,
+                cols
               };
               const image = {
                 number: imageNumber,
@@ -215,7 +219,7 @@ const actions = {
       .then(data => {
         console.log('top_scores', data);
         const index = data.findIndex(item => item.user_id === postObject.user_id && item.puzzle_id === postObject.puzzle_id && item.score == postObject.score && item.time === postObject.time);
-        if (index > -11){
+        if (index > -1){
           const position = index+1;
           commit('setPosition', position);
         }

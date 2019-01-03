@@ -12,7 +12,7 @@
      </div>
     <div id="puzzle-board-container" :style="{ paddingBottom: this.height+'%' }">
       <div id="puzzle-board" :style="gridStyle">
-        <puzzle-item-container :readonly="readonly" :index="index"  :key="puzzle.id+'_'+item.number"   v-for="(item,index) in container">
+        <puzzle-item-container :readonly="readonly" :item="item" :index="index"  :key="puzzle.id+'_'+item.number"   v-for="(item,index) in container">
           <puzzle-item  :readonly="readonly" v-if="item.image" :index="index" :key="item.image.number" :item="item.image"></puzzle-item>
         </puzzle-item-container> 
       </div>
@@ -48,14 +48,6 @@ export default {
     gridStyle() {
       const { cols, rows, image } = this.puzzle;
       return {
-        gridTemplateColumns: "repeat(" + cols + ", 1fr)",
-        gridTemplateRows: "repeat(" + rows + ", 1fr)",
-        /*
-        backgroundImage: 'url("' + image + '")',
-        backgroundSize: '100%',
-        backgroundRepeat: 'no-repeat',
-        */
-        padding: PADDING +'%',        
         width: "100%"
       };
     }
@@ -76,22 +68,24 @@ export default {
 }
 
 #puzzle-board-container {
-  position: relative;
   width: 100%;
+  height: 100%;
+  position: relative;
 }
 #puzzle-board {
   position: absolute;
-  display: grid;
+  align-content: stretch;
   height: 100%;
-  justify-content: center;
   grid-gap: 2px;
   border: 4px solid #333;
   box-sizing: border-box;
-  bottom: 0;
+  padding-bottom: 0 !important;
+  bottom: 0 !important;
   top: 0;
   left: 0;
   right: 0;
 }
+
 
 .title-container {
   display: flex;

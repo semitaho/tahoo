@@ -2,7 +2,7 @@
   <sweet-modal overlay-theme="dark" title="Läpäisit tason!" :blocking="true" ref="modal" icon="success">
     <slot />
     <taho-button slot="button" type="secondary" @click="$emit('onrestart')"   text="Pelaa uudelleen" />
-    <taho-button slot="button" text="Jatka"  @click="$emit('oncontinue')" />
+    <taho-button v-if="hasNext" slot="button" text="Jatka"  @click="$emit('oncontinue')" />
   </sweet-modal>
 </template>
 <script>
@@ -14,6 +14,11 @@ export default {
   components: {
     TahoButton,
     SweetModal
+  },
+  props: {
+    hasNext: {
+      type: Boolean
+    }
   },
   mounted(){
     this.$refs.modal.open();

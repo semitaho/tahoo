@@ -39,7 +39,7 @@ const actions = {
         commit('setNick', event.target.value);
     },
 
-    storeNick({ getters }) {
+    storeNick({ getters, commit }) {
         const nick = getters.user.nickInput;
         api.callPUT('/user', { nick })
          .then(user => {

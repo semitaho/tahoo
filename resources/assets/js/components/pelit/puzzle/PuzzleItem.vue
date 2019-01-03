@@ -1,5 +1,5 @@
 <template>
-  <div  @dragover.prevent="dragOver"  @dragend.prevent="endDrag" @dragstart="onDragStart" draggable="true" class="puzzle-item" :id="'img_'+this.puzzle.id+'_'+this.item.number" :style="itemStyle">
+  <div  @dragover.prevent="dragOver" @touchstart="touchStart"    @dragend.prevent="endDrag" @dragstart="onDragStart" draggable="true" class="puzzle-item" :id="'img_'+this.puzzle.id+'_'+this.item.number" :style="itemStyle">
   </div>
   
 </template>
@@ -30,6 +30,11 @@ export default {
   },
 
   methods: {
+
+    touchStart(event) {
+      console.log('touching', event.changedTouches[0]);
+
+    },
     dragOver(event){
      // event.target.style.zIndex = 99999;
 
@@ -65,7 +70,7 @@ export default {
   cursor: grab;
   height: 100%;
   width: 100%;
-}
+ }
 
 .dragging {
   opacity: 0.1;

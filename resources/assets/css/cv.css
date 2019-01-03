@@ -77,6 +77,10 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.main-content {
+    text-align: left;
+}
+
 @media print {
 
     @page {
