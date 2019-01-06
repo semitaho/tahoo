@@ -144,7 +144,7 @@ const actions = {
                 number: imageNumber,
                 x: (colPos * (100 / (cols - 1))),
                 y: (rowPos * (100 / (rows - 1)))
-              }
+              };            
               puzzleObjects.push(puzzleObject);
               images.push(image);
               imageNumber++;
@@ -153,8 +153,8 @@ const actions = {
           const shuffledImages = shuffle(images);
           puzzleObjects.forEach((item, index) => {
             item.image = shuffledImages[index];
-          });
-          commit('setContainer', puzzleObjects);
+          });         
+          commit('setContainer', puzzleObjects); 
           commit('setLoading', false);
 
         };
@@ -185,6 +185,21 @@ const actions = {
 
   },
 
+  swap({ commit, getters, dispatch }, {source, target}){
+    const newContainer = state.container.slice();
+    const swappable = newContainer[source].image; 
+    newContainer[source].image = newContainer[target].image;
+    newContainer[target].image = swappable;
+    commit('setContainer', newContainer);
+    commit('addSiirto');
+    if (getters.isValid) {
+      setTimeout(() => {
+        dispatch('finishLevel');
+      }, 1500);
+    }
+
+  },
+
   finishLevel({ commit, dispatch }) {
     clearInterval(interval);
     dispatch('saveGame');
@@ -201,7 +216,6 @@ const actions = {
   resumeGame({ dispatch }, index){
     const level =  localStorage.getItem('level');
     if (level){
-      console.log('on asetettu', level);
       dispatch('startLevel', level);
     }
 
@@ -217,7 +231,6 @@ const actions = {
     console.log(' saving', postObject);
     api.callPOST('/puzzles/scores',postObject)
       .then(data => {
-        console.log('top_scores', data);
         const index = data.findIndex(item => item.user_id === postObject.user_id && item.puzzle_id === postObject.puzzle_id && item.score == postObject.score && item.time === postObject.time);
         if (index > -1){
           const position = index+1;

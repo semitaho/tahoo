@@ -1,6 +1,7 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+// options are optional ;)
 
 import VueAnalytics from 'vue-analytics';
 import PuzzleApp from './components/pelit/puzzle/PuzzleApp';

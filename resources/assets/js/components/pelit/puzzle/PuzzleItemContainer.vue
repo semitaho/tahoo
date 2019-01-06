@@ -1,5 +1,5 @@
 <template>
-  <div class="puzzle-container" @drop.prevent="placeItem" :style="style" >
+  <div class="puzzle-container" :id="'puzzle-container-'+this.index" :style="style" >
     <slot></slot>
   </div>
   
@@ -16,7 +16,6 @@ export default {
   computed: {
     style(){
       const {row, col, rows, cols}  = this.item;
-      console.log('item', this.item);
       const left =( col / cols * 100) + '%';
       const top = (row / rows * 100) + '%';
 
@@ -35,6 +34,15 @@ export default {
 
   methods: {
 
+    releaseItem(event) {
+      console.log('releasing', event);
+      console.log('index', this.index);
+      const touch = event.touches[0]  || event.changedTouches[0];
+      
+
+
+    },
+
     placeItem(event){
       if (this.readonly){
         return false;
@@ -42,7 +50,6 @@ export default {
       console.log('placing item', event.dataTransfer.dropEffect);
 
       const source = event.dataTransfer.getData("source");
-      console.log( 'source ,index', source, this.index);
       this.$store.commit('setPlaced', true);
       if (+source === +this.index){
         this.$store.dispatch('cancelDrag', this.index);
