@@ -8,7 +8,6 @@ const shuffle = imageArr => {
   return imageArr;
 }
 
-let interval;
 const state = {
   container: [],
   fly: null,

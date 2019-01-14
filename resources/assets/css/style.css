@@ -508,7 +508,7 @@ td, th {
 }
 
 html, body {
-    height: 100%; 
+    height: auto; 
     min-height: 100%;
 
 }

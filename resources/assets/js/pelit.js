@@ -2,7 +2,6 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 // options are optional ;)
-
 import VueAnalytics from 'vue-analytics';
 import PuzzleApp from './components/pelit/puzzle/PuzzleApp';
 import store from './store';
@@ -11,6 +10,7 @@ import { GA_KEY } from './constaints';
 import Pelit from './components/pelit/Pelit';
 import PelitSelector from './components/pelit/PelitSelector';
 import dApp from './components/pelit/3d/3dApp';
+import SudokuApp from './components/pelit/sudoku/SudokuApp';
 
 window.Vue.use(VueRouter);
 
@@ -25,6 +25,8 @@ const router = new VueRouter({
   },
    {
     path: '/3d', component: dApp
+  }, {
+    path: '/sudoku', component: SudokuApp
   }
 ]
 });

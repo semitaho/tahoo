@@ -32,32 +32,7 @@ export default {
   },
 
 
-  methods: {
-
-    releaseItem(event) {
-      console.log('releasing', event);
-      console.log('index', this.index);
-      const touch = event.touches[0]  || event.changedTouches[0];
-      
-
-
-    },
-
-    placeItem(event){
-      if (this.readonly){
-        return false;
-      }
-      console.log('placing item', event.dataTransfer.dropEffect);
-
-      const source = event.dataTransfer.getData("source");
-      this.$store.commit('setPlaced', true);
-      if (+source === +this.index){
-        this.$store.dispatch('cancelDrag', this.index);
-        return;
-      }
-      this.$store.dispatch('insertItem', {source, target: this.index});
-
-    }
+  methods: {    
   }
 }
 

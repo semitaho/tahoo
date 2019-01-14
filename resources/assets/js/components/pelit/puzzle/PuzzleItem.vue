@@ -43,12 +43,6 @@ export default {
       }
       document.documentElement.style.overflow = 'hidden';
       const touch = event.touches[0] || event.changedTouches[0];
-      console.log(
-        "touch start",
-        touch.target.parentNode.getBoundingClientRect().left
-      );
-      console.log("touch left", touch.pageX);
-
       this.startX = touch.pageX;
       this.startY = touch.pageY;
       this.x = touch.target.getBoundingClientRect().left;
@@ -80,11 +74,18 @@ export default {
         this.cancelTouch(touch, currentDisplay);
         return;
       }
-      const index =
-        targetElement.parentNode.id[targetElement.parentNode.id.length - 1];
+      const index = this.getIndex(targetElement);
       this.animateTransfer(targetElement, this.x, this.y, () =>
         this.$store.dispatch("swap", { source: index, target: this.index })
       );
+    },
+
+    getIndex(element){
+      const id = element.parentNode.id;
+      const index = id.substring(id.lastIndexOf('-')+1);
+      console.log('index', index);
+      return index;
+
     },
 
     animateTransfer(targetElement, x, y, callback) {
