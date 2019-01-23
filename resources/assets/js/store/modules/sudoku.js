@@ -51,16 +51,17 @@ const actions = {
         commit('common/setState', STATE.playing, { root: true });
     },
 
-    resumeGame({ dispatch, rootGetters }){
-        const level =  localStorage.getItem(LEVEL_PUZZLE_KEY);
-        if (rootGetters['user/nickInput']){
+    resumeGame({ dispatch, rootGetters }) {
+        const level = localStorage.getItem(LEVEL_PUZZLE_KEY);
+        if (rootGetters['user/nickInput']) {
             dispatch('user/storeNick', null, { root: true });
-          }
-        if (level){
-          dispatch('startLevel', level);
         }
-    
-      },
+        if (level) {
+            dispatch('startLevel', level);
+        } else {
+            dispatch('startLevel', 1);
+        }
+    },
 
     createBoard({ getters, commit, rootGetters }) {
         const level = rootGetters['common/level'];
@@ -94,28 +95,28 @@ const actions = {
     },
 
     finishLevel({ dispatch, commit }) {
-       dispatch('saveGame');  
-       commit('common/setState', STATE.finished, { root: true });
+        dispatch('saveGame');
+        commit('common/setState', STATE.finished, { root: true });
     },
 
-    saveGame({ rootGetters, commit }){
+    saveGame({ rootGetters, commit }) {
         const currentLevel = rootGetters['common/level'];
-        localStorage.setItem(LEVEL_PUZZLE_KEY, +currentLevel+1);
-        const postObject = { 
-            user_id: rootGetters['user/id'], 
+        localStorage.setItem(LEVEL_PUZZLE_KEY, +currentLevel + 1);
+        const postObject = {
+            user_id: rootGetters['user/id'],
             level: currentLevel,
             time: rootGetters['common/time']
-          };
-          console.log(' saving', postObject);
-          api.callPOST('/sudoku',postObject)
-          .then(data => {
-            const index = data.findIndex(item => item.user_id === postObject.user_id && item.puzzle_id === postObject.puzzle_id && item.score == postObject.score && item.time === postObject.time);
-            if (index > -1){
-              const position = index+1;
-              commit('setPosition', position);
-            }
-          });
-         
+        };
+        console.log(' saving', postObject);
+        api.callPOST('/sudoku', postObject)
+            .then(data => {
+                const index = data.findIndex(item => item.user_id === postObject.user_id && item.puzzle_id === postObject.puzzle_id && item.score == postObject.score && item.time === postObject.time);
+                if (index > -1) {
+                    const position = index + 1;
+                    commit('setPosition', position);
+                }
+            });
+
     }
 };
 

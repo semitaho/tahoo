@@ -31,8 +31,11 @@ export default {
   .game-page {
     flex-direction: column;
     flex: 1;
-    justify-content: space-around;
+    justify-content: center;
     display: flex;
+  }
+  .game-page > * {
+    margin-bottom: 2rem;
   }
 
   .game-selector {
