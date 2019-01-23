@@ -1,12 +1,16 @@
 <template>
-<div>
+<div class="game-page">
   <h1>Valitse peli</h1>
   
   <div class="game-selector-container">
-  <router-link class="game-selector" :to="peli.routeLink"  :key="peli.routeLink" v-for="peli in games">
-    <img :src="peli.image" />
-    <b>{{peli.title}}</b>
-  </router-link>
+    <router-link class="game-selector" :to="peli.routeLink"  :key="peli.routeLink" v-for="peli in games">
+      <img :src="peli.image" />
+      <b>{{peli.title}}</b>
+    </router-link>
+  </div>
+  <div>
+    <div><b>Tulossa:</b></div>
+    <div><span>Nopeustesti</span></div>
   </div>
 </div>
 </template>
@@ -24,10 +28,17 @@ export default {
     justify-content: center;
   }
 
+  .game-page {
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+    display: flex;
+  }
+
   .game-selector {
     display: flex;
     flex-direction: column;
-
+    margin-right: 2rem;
   }
 </style>
 

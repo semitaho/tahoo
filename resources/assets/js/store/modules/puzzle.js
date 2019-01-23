@@ -15,11 +15,7 @@ const state = {
   height: 0,
   siirrot: 0,
   imageIndex: 0,
-  time: 0,
-  interval: null,
   puzzle: null,
-  gamestate: STATE.start,
-  level: null,
   image: null,
   position: null,
   loading: true,
@@ -75,26 +71,6 @@ const mutations = {
     state.puzzle = image;
   },
 
-  setLevel(state, num) {
-    state.level = num;
-  },
-
-  setInterval(state, interval) {
-    state.interval = interval;
-  },
-
-  clearInterval(state) {
-    clearInterval(state.interval);
-  },
-
-  addTime(state, time) {
-    state.time += 1;
-  },
-
-  setState(state, gamestate) {
-    state.gamestate = gamestate;
-  },
-
   setPosition(state, position) {
     state.position = position;
   },
@@ -105,7 +81,6 @@ const mutations = {
 
   clear(state) {
     state.siirrot = 0;
-    state.time = 0;
     state.height = 0;
     state.imageIndex = 0;
     state.position = null;
@@ -116,9 +91,9 @@ const mutations = {
 
 const actions = {
 
-  createBoard({ commit, getters }) {
+  createBoard({ commit, rootGetters }) {
     console.log('creating board...');
-    Promise.all([api.callGET('/puzzles/' + getters.level)])
+    Promise.all([api.callGET('/puzzles/' + rootGetters['common/level'])])
       .then(([data]) =>  {
         const { image, rows, cols } = data;
         commit('setPuzzle', data);
@@ -200,7 +175,7 @@ const actions = {
   },
 
   finishLevel({ commit, dispatch }) {
-    clearInterval(interval);
+    commit('common/clearInterval', null, { root: true });
     dispatch('saveGame');
     commit('setState', STATE.finished);
   },
@@ -212,7 +187,10 @@ const actions = {
     commit('setContainer', containerCopy);
   },
 
-  resumeGame({ dispatch }, index){
+  resumeGame({ dispatch, rootGetters }, index){
+    if (rootGetters['user/nickInput']){
+      dispatch('user/storeNick', null, { root: true });
+    }
     const level =  localStorage.getItem('level');
     if (level){
       dispatch('startLevel', level);
@@ -220,12 +198,12 @@ const actions = {
 
   },
 
-  saveGame({ commit, getters, dispatch }) {
+  saveGame({ commit, getters, rootGetters }) {
     const postObject = { 
-      user_id: getters.user.id, 
+      user_id: rootGetters['user/id'], 
       puzzle_id: getters.puzzle.id,
       score: getters.siirrot,
-      time: getters.time
+      time: rootGetters['common/time']
     };
     console.log(' saving', postObject);
     api.callPOST('/puzzles/scores',postObject)
@@ -243,19 +221,18 @@ const actions = {
 
   startLevel({ commit, dispatch }, level){
     commit('clear');
-    commit('setState', STATE.playing);
+    commit('common/clear', null, { root: true });
+    commit('common/setState', STATE.playing, { root: true });
     commit('setLoading', true);
-    commit('setLevel', level);
+    commit('common/setLevel', level, { root: true });
     dispatch('createBoard');
-    interval = setInterval(() => {
-      commit('addTime', 1);
-    }, 1000);
+    dispatch('common/startTimer', null, { root: true });
   },
-  startGame({ commit, dispatch, getters }) {
+  startGame({ commit, dispatch, rootGetters }) {
     localStorage.removeItem(LSKEY_LEVEL);
     dispatch('startLevel', 1);
-    if (getters.user.nickInput){
-      dispatch('storeNick');
+    if (rootGetters['user/nickInput']){
+      dispatch('user/storeNick', null, { root: true });
     }
     
   }

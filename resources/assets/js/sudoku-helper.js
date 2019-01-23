@@ -33,7 +33,6 @@ export function createBoard(board, removeCount) {
     let puzzleBoard = board.slice();
     for (let i = 1; i <= REMOVAL; i++) {
         let randIndex = -1;
-        let removalSuggestion = -1;
         let copyRemovals = null;
         do {
             randIndex = Math.floor(Math.random() * board.length);

@@ -1,8 +1,11 @@
-import { STATE, LSKEY_LEVEL } from './../../constaints';
+import { STATE, LEVEL_PUZZLE_KEY } from './../../constaints';
 import { fillBoard, createBoard } from './../../sudoku-helper';
+import api from './../../services/api.service';
 
 const state = {
-    board: []
+    board: [],
+    position: null,
+    selectedGrid: 2
 };
 
 const getters = {
@@ -11,13 +14,24 @@ const getters = {
         return state.gamestate;
     },
     board: state => state.board,
+    position: state => state.position,
     time: state => state.time,
+    resume: state => !!localStorage.getItem(LEVEL_PUZZLE_KEY),
+    selected: state => state.selectedGrid,
+
     valid: state => state.board.every((item) => item.solution === item.value)
 };
 
 const mutations = {
     setBoard(state, board) {
         state.board = board;
+    },
+    clear(state) {
+        state.board = [];
+    },
+
+    setPosition(state, position) {
+        state.position = position;
     }
 };
 
@@ -28,18 +42,32 @@ const actions = {
     },
 
     startLevel({ commit, dispatch }, level) {
-        console.log('new level')
+        console.log('new level', level)
+        commit('clear');
+        commit('common/clear', null, { root: true });
         commit('common/setLevel', level, { root: true });
-        dispatch('createBoard', level);
+        dispatch('createBoard');
         dispatch('common/startTimer', null, { root: true });
         commit('common/setState', STATE.playing, { root: true });
     },
 
-    createBoard({ getters, commit }, level) {
-        console.log('level', level);
+    resumeGame({ dispatch, rootGetters }){
+        const level =  localStorage.getItem(LEVEL_PUZZLE_KEY);
+        if (rootGetters['user/nickInput']){
+            dispatch('user/storeNick', null, { root: true });
+          }
+        if (level){
+          dispatch('startLevel', level);
+        }
+    
+      },
+
+    createBoard({ getters, commit, rootGetters }) {
+        const level = rootGetters['common/level'];
+        console.log('levl', level);
         let slicedBoard = getters.board.slice();
         slicedBoard = fillBoard(slicedBoard, 0);
-        let puzzleBoard = createBoard(slicedBoard, 1);
+        let puzzleBoard = createBoard(slicedBoard, level);
         const gameBoard = puzzleBoard.map((item, index) => {
             const newItem = Object.assign({}, {
                 solution: slicedBoard[index],
@@ -65,8 +93,29 @@ const actions = {
         }
     },
 
-    finishLevel({ commit }) {
-       commit('setState', STATE.finished, { root: true });
+    finishLevel({ dispatch, commit }) {
+       dispatch('saveGame');  
+       commit('common/setState', STATE.finished, { root: true });
+    },
+
+    saveGame({ rootGetters, commit }){
+        const currentLevel = rootGetters['common/level'];
+        localStorage.setItem(LEVEL_PUZZLE_KEY, +currentLevel+1);
+        const postObject = { 
+            user_id: rootGetters['user/id'], 
+            level: currentLevel,
+            time: rootGetters['common/time']
+          };
+          console.log(' saving', postObject);
+          api.callPOST('/sudoku',postObject)
+          .then(data => {
+            const index = data.findIndex(item => item.user_id === postObject.user_id && item.puzzle_id === postObject.puzzle_id && item.score == postObject.score && item.time === postObject.time);
+            if (index > -1){
+              const position = index+1;
+              commit('setPosition', position);
+            }
+          });
+         
     }
 };
 

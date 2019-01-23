@@ -4,7 +4,7 @@ const state = {
     gamestate: STATE.start,
     interval: null,
     time: 0,
-    level: null,
+    level: null
 
 };
 
@@ -14,6 +14,12 @@ const mutations = {
     clearInterval(state, interval) {
         clearInterval(state.interval);
     },
+
+    clear(state) {
+        clearInterval(state.interval);
+        state.time = 0;
+    },
+
     setState: (state, gamestate) => state.gamestate = gamestate
 };
 

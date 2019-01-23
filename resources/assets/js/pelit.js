@@ -11,8 +11,10 @@ import Pelit from './components/pelit/Pelit';
 import PelitSelector from './components/pelit/PelitSelector';
 import dApp from './components/pelit/3d/3dApp';
 import SudokuApp from './components/pelit/sudoku/SudokuApp';
+import Autocomplete from 'v-autocomplete';
 
 window.Vue.use(VueRouter);
+window.Vue.use(Autocomplete);
 
 
 

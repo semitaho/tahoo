@@ -42,6 +42,7 @@ class PuzzleController extends Controller {
            array('user_id' => $request->input('user_id'),
                  'puzzle_id' => $puzzle_id,
                  'time' => $request->input('time'),
+                 'created_at' =>  date('Y-m-d H:i:s'),
                  'score' => $request->input('score'))))
                  {
                      return $this->scoresByPuzzle($puzzle_id);

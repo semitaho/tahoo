@@ -1,17 +1,26 @@
 <template>
   <div id="sudoku">
-    <start-screen title="Sudoku" @start="startNewGame" v-if="gamestate === STATE.start">
+    <start-screen :resume="resume" @resumeGame="resumeGame" title="Sudoku" @start="startNewGame" v-if="gamestate === STATE.start">
+      <p v-if="user.nick">Terve <b>{{user.nick}}</b>!</p>
       <p>
         Täytä ruudukot siten, että jokaisessa rivissä, sarakkeessa ja 3x3 ruudukossa tulee
         olla numerot 1-9.
+      </p>
+      <p v-if="!user.nick">
+        <input
+          type="text"
+          :value="user.nickInput"
+          placeholder="Anna nimimerkkisi"
+          @input="updateNick"
+        >
       </p>
     </start-screen>
     <sudoku-level v-else-if="gamestate === STATE.playing"/>
     <div id="level-finished" v-else-if="gamestate === STATE.finished">
       <taho-modal
         :hasNext="true"
-        @oncontinue="startLevel(puzzle.id+1)"
-        @onrestart="startLevel(puzzle.id)"
+        @oncontinue="resumeGame"
+        @onrestart="startLevel(level)"
       >
         <p>Pelasit ruudun läpi.</p>
         <p>
@@ -47,14 +56,26 @@ export default {
       STATE
     };
   },
+
   computed: mapGetters({
     gamestate: "common/gamestate",
-    time: "common/time"
+    time: "common/time",
+    level: "common/level",
+    position: "sudoku/position",
+    resume: "sudoku/resume",
+    user: "user/user"
   }),
   methods: mapActions({
     startNewGame: "sudoku/startNewGame",
-    startLevel: "sudoku/startLevel"
-  })
+    startLevel: "sudoku/startLevel",
+    resumeGame: "sudoku/resumeGame",
+    updateNick: "user/updateNick"
+    
+  }),
+
+   created() {
+    this.$store.dispatch('user/retrieveUser');
+  }
 };
 </script>
 <style scoped>
@@ -62,7 +83,9 @@ export default {
 #sudoku {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  flex: 1;
 }
 
 #level-finished {

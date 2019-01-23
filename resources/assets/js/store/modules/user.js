@@ -8,7 +8,10 @@ const getters = {
     isSet: state =>  {
         return state.user.nickInput  ||state.user.nick;
     },
-    user: state => state.user    
+    user: state => state.user,
+    id: state => state.user.id,
+    nickInput: state => state.user.nickInput
+   
 };
 
 const mutations = {
@@ -50,6 +53,7 @@ const actions = {
 
 
 export default {
+    namespaced: true,
     state,
     getters,
     mutations,

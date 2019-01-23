@@ -43,7 +43,15 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["loading", "siirrot", "puzzle", "container", "height", "level", "time"]),
+    time() {
+      return this.$store.getters['common/time'];
+
+    },
+
+    level() {
+      return this.$store.getters['common/level'];
+    },
+    ...mapGetters(["loading", "siirrot", "puzzle", "container", "height"]),
 
     gridStyle() {
       const { cols, rows, image } = this.puzzle;

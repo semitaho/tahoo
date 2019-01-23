@@ -4,7 +4,7 @@
     <slot />
 
     <div class="button-container">
-      <taho-button type="secondary"  @click="$emit('resumeGame')" v-if="resume" text="Jatka" ></taho-button>
+      <taho-button type="secondary" :disabled="disabled"  @click="$emit('resumeGame')" v-if="resume" text="Jatka" ></taho-button>
       <taho-button :disabled="disabled" text="Aloita uusi peli" @click="$emit('start')" ></taho-button>
       </div>
     </div>

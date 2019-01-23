@@ -1,26 +1,17 @@
 <template>
-  <v-select
-    :value="item.value"
-    :disabled="item.readonly || readonly"
-    :tabindex="index"
-    :options="options"
-    :class="getBoxStyle"
-    :selectOnTab="true"
-    @input="onChange"
-  ></v-select>
+<div class="grid" :class="getBoxStyle" @click.prevent.stop="handleClick" ><span>{{item.value}}</span>
+</div>
+
 </template>
 
 <script>
-import vSelect from "vue-select";
+
+
 import { mapActions } from "vuex";
 export default {
   name: "SudokuSquare",
-  data() {
-    return {
-      options: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    };
-  },
   computed: {
+  
     getBoxStyle() {
       let style = "box-cell ";
       if ((this.index + 1) % 3 === 0) {
@@ -39,14 +30,29 @@ export default {
       ) {
         style += "box-bottom";
       }
+      if (!this.item.readonly && !this.readonly) {
+        style += ' editable';
+      }
+      if (this.active) {
+        style += ' active';
+      }
       return style;
     }
   },
-  components: { vSelect },
-  props: ["index", "item", "readonly"],
+  props: ["index", "item", "readonly", "active"],
   methods: {
     onChange(text) {
+      if (text === this.item.value){
+        return;
+      }
       this.changeNumber({ index: this.index, text: +text });
+    },
+
+    handleClick(event) {
+      if (this.item.readonly || this.readonly){
+        return;
+      }
+      this.$emit('click', event, this.index);
     },
 
     ...mapActions({
@@ -57,42 +63,31 @@ export default {
 </script>
 
 <style>
-select {
-  text-align: center;
-}
 
-.v-select .open-indicator {
-  display: none;
-}
-.v-select .dropdown-menu {
-  min-width: auto;
-  left: auto;
-  text-align: center;
-}
+.grid {
+  border-right: 1px solid #119595;
+  border-bottom: 1px solid #119595;
 
-.v-select .selected-tag input {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
   justify-content: center;
+}
+
+.grid span {
   font-weight: bold;
 }
 
-.v-select .vs__selected-options {
-  justify-content: center;
-}
-
-.v-select .vs__selected-options .selected-tag {
-  flex-grow: 1;
-  justify-content: center;
-}
-
-.disabled .vs__selected-options .selected-tag {
-  font-weight: bold;
-  color: #000;
-}
-
-.vs__selected-options .selected-tag {
+.grid.editable {
   color: blue;
-  font-weight: bold;
+
 }
+
+.grid.editable:hover, .grid.editable.active {
+  cursor: pointer;
+  border: 4px solid #119595;
+}
+
 
 .box-left {
   border-left: 2px solid black;

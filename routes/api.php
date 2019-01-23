@@ -18,11 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('puzzles/{level}', 'PuzzleController@images');
-
 Route::post('puzzles/scores', 'PuzzleController@scores');
+
+Route::post('sudoku', 'SudokuController@scores');
 
 
 Route::post('user', 'UserController@retrieve');
-
 Route::put('user', 'UserController@storeNick');
 
