@@ -30,7 +30,7 @@
     <meta name="author" content="Toni Aho"/>
     <meta name="description"
           content="Taho Ohjelmistopalvelut Oy on 2018 perustettu ohjelmistokonsultointiyritys, joka myy yksittäistä suunnittelu- ja kehitysapua asiakkaiden ohjelmistoprojekteihin laadukkaasti ja tehokkaasti yli 10 vuoden kokemuksella."/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     @section('styles')
     <link href="{{ asset('/resources/assets/css/style.css') }}" rel="stylesheet"/>
     @show

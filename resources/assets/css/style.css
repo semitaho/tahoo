@@ -682,14 +682,14 @@ a:hover {
 @media screen and (max-width: 768px) {
     .main-content {
         padding: 2rem 1rem;
-        font-size: 1rem;
+        font-size: 1rem; 
         width: 100%;
     }
     #puzzle-game {
         width: 100%;
     }
     #start-screen {
-        width: 100%;
+        width: 97%;
     }
 
 }

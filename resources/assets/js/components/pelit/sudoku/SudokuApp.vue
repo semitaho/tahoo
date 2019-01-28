@@ -1,6 +1,11 @@
 <template>
   <div id="sudoku">
-    <start-screen :resume="resume" @resumeGame="resumeGame" title="Sudoku" @start="startNewGame" v-if="gamestate === STATE.start">
+    <start-screen 
+      :resume="resume" 
+      @resumeGame="resumeGame" 
+      title="Sudoku" 
+      @start="startNewGame" 
+      v-if="gamestate === STATE.start && user.id">
       <p v-if="user.nick">Terve <b>{{user.nick}}</b>!</p>
       <p>
         Täytä ruudukot siten, että jokaisessa rivissä, sarakkeessa ja 3x3 ruudukossa tulee

@@ -1,17 +1,27 @@
 <template>
-<div class="grid" :class="getBoxStyle" @click.prevent.stop="handleClick" ><span>{{item.value}}</span>
-</div>
-
+  <div class="grid" :class="getBoxStyle" @click.prevent.stop="handleClick">
+    <span>{{item.value}}</span>
+  </div>
 </template>
 
 <script>
+const DIFFCOLOR_BOXAREAS = [0, 6, 30, 54, 60];
+
+const boxes = DIFFCOLOR_BOXAREAS.reduce((acc, current) => {
+  for (let i = current; i < current + 3; i++) {
+    for (let j = 0; j <= 2; j++) {
+      const index = i + (j * 9) ;
+      acc.push(index);
+    }
+  }
+  return acc;
+}, []);
 
 
 import { mapActions } from "vuex";
 export default {
   name: "SudokuSquare",
   computed: {
-  
     getBoxStyle() {
       let style = "box-cell ";
       if ((this.index + 1) % 3 === 0) {
@@ -31,10 +41,14 @@ export default {
         style += "box-bottom";
       }
       if (!this.item.readonly && !this.readonly) {
-        style += ' editable';
+        style += " editable";
       }
       if (this.active) {
-        style += ' active';
+        style += " active";
+      }
+
+      if (boxes.indexOf(this.index) > -1) {
+        style += " gray";
       }
       return style;
     }
@@ -42,17 +56,17 @@ export default {
   props: ["index", "item", "readonly", "active"],
   methods: {
     onChange(text) {
-      if (text === this.item.value){
+      if (text === this.item.value) {
         return;
       }
       this.changeNumber({ index: this.index, text: +text });
     },
 
     handleClick(event) {
-      if (this.item.readonly || this.readonly){
+      if (this.item.readonly || this.readonly) {
         return;
       }
-      this.$emit('click', event, this.index);
+      this.$emit("click", event, this.index);
     },
 
     ...mapActions({
@@ -63,7 +77,6 @@ export default {
 </script>
 
 <style>
-
 .grid {
   border-right: 1px solid #119595;
   border-bottom: 1px solid #119595;
@@ -78,16 +91,19 @@ export default {
   font-weight: bold;
 }
 
-.grid.editable {
-  color: blue;
-
+.grid.gray {
+  background: #f2f2f2;
 }
 
-.grid.editable:hover, .grid.editable.active {
+.grid.editable {
+  color: blue;
+}
+
+.grid.editable:hover,
+.grid.editable.active {
   cursor: pointer;
   border: 4px solid #119595;
 }
-
 
 .box-left {
   border-left: 2px solid black;

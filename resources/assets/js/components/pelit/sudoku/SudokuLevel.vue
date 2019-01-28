@@ -20,12 +20,14 @@
         :item="item"
         @click="handleClick"
       />
+      
       <vue-simple-context-menu
         :elementId="menuId"
         :options="options"
         :ref="'vueSimpleContextMenu'"
         @optionClicked="optionClicked"
       ></vue-simple-context-menu>
+      
     </div>
   </div>
 </template>
@@ -115,6 +117,7 @@ export default {
 #sudoku-game {
   width: 100%;
   flex: 1;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
 }
@@ -123,8 +126,12 @@ export default {
   border-collapse: collapse;
   display: grid;
   flex: 1;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(9, 11%);
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+#sudoku-board > .grid {
+  flex: 11%;
 }
 #sudoku-info-container {
   display: flex;
