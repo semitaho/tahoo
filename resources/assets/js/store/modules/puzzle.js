@@ -177,7 +177,7 @@ const actions = {
   finishLevel({ commit, dispatch }) {
     commit('common/clearInterval', null, { root: true });
     dispatch('saveGame');
-    commit('setState', STATE.finished);
+    commit('common/setState', STATE.finished, { root: true });
   },
 
   takeItem({ commit, state }, index) {

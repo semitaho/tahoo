@@ -106,8 +106,28 @@
     a, .page-header, footer {
         display: none;
     }
-
-
 }
 
+@media screen and (max-width: 768px) {
+    .main-content {
+       text-align: center;
+    }
 
+   .grid-cv, 
+   .grid-category,
+   .grid-education-item,
+   .grid-project-desc {
+       grid-template-columns: 1fr;
+    }
+
+    .grid-category,
+    .grid-project {
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+}

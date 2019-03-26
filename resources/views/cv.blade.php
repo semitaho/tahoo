@@ -80,8 +80,8 @@ CV
                 <div></div>
                 <div class="header"><strong><em>Kokemus</em></strong></div>
                 @foreach($category['items'] as $skill)
-                <div><em>{{$skill['skill_name']}}</em></div>
-                <div>{{$skill['experience']}} vuotta</div>
+                <div class="skill"><em>{{$skill['skill_name']}}</em></div>
+                <div class="experience">{{$skill['experience']}} vuotta</div>
                 @endforeach
             </div>
 

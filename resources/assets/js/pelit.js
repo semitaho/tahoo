@@ -11,12 +11,9 @@ import Pelit from './components/pelit/Pelit';
 import PelitSelector from './components/pelit/PelitSelector';
 import dApp from './components/pelit/3d/3dApp';
 import SudokuApp from './components/pelit/sudoku/SudokuApp';
-import Autocomplete from 'v-autocomplete';
+import NopeustestiApp from './components/pelit/nopeustesti/NopeustestiApp';
 
 window.Vue.use(VueRouter);
-window.Vue.use(Autocomplete);
-
-
 
 const router = new VueRouter({
   routes: [{
@@ -29,6 +26,10 @@ const router = new VueRouter({
     path: '/3d', component: dApp
   }, {
     path: '/sudoku', component: SudokuApp
+  },
+
+  {
+    path: '/nopeustesti', component: NopeustestiApp
   }
 ]
 });

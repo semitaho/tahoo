@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 
 import Puzzle from './modules/puzzle';
 import Sudoku from './modules/sudoku';
+import NopeuspeliModule from './modules/nopeustesti/index';
+
 import Selector from './modules/selector';
 import User from './modules/user';
 import Common from './modules/common';
@@ -14,6 +16,7 @@ export default new Vuex.Store({
     common: Common,
     puzzle: Puzzle,
     sudoku: Sudoku,
+    nopeustesti: NopeuspeliModule,
     selector: Selector,
     user: User
   }

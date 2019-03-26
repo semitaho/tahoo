@@ -20,7 +20,10 @@ const mutations = {
         state.time = 0;
     },
 
-    setState: (state, gamestate) => state.gamestate = gamestate
+    setState: (state, gamestate) => {
+        console.log('gamestate', gamestate);
+        state.gamestate = gamestate;
+    }
 };
 
 const getters = {

@@ -1,5 +1,5 @@
 <template>
-  <sweet-modal :enable-mobile-fullscreen="true"  overlay-theme="dark" title="Läpäisit tason!" :blocking="true" ref="modal" icon="success">
+  <sweet-modal :enable-mobile-fullscreen="true"  overlay-theme="dark" :title="title" :blocking="true" ref="modal" icon="success">
     <slot />
     <taho-button slot="button" type="secondary" @click="$emit('onrestart')"   text="Pelaa uudelleen" />
     <taho-button v-if="hasNext" slot="button" text="Jatka"  @click="$emit('oncontinue')" />
@@ -18,7 +18,12 @@ export default {
   props: {
     hasNext: {
       type: Boolean
+    },
+
+    title: {
+      default: 'Läpäisit tason!'
     }
+
   },
   mounted(){
     this.$refs.modal.open();

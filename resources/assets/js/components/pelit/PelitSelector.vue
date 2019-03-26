@@ -8,10 +8,6 @@
       <b>{{peli.title}}</b>
     </router-link>
   </div>
-  <div>
-    <div><b>Tulossa:</b></div>
-    <div><span>Nopeustesti</span></div>
-  </div>
 </div>
 </template>
 <script>
@@ -42,6 +38,11 @@ export default {
     display: flex;
     flex-direction: column;
     margin-right: 2rem;
+  }
+
+  img {
+    width: 128px; 
+    height: 128px;
   }
 </style>
 

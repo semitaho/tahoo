@@ -27,6 +27,17 @@ export function fillBoard(currentBoard, index) {
 
 }
 
+export function findPosition(scores, score) {
+    const index = scores.findIndex(item => item.user_id === score.user_id && item.level === score.level);
+    if (index > -1) {
+        const position = index + 1;
+        return position;
+
+    }
+    return null;
+
+}
+
 export function createBoard(board, removeCount) {
     const REMOVAL = removeCount;
     let removals = [];

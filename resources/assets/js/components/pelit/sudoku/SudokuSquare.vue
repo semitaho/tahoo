@@ -80,7 +80,8 @@ export default {
 .grid {
   border-right: 1px solid #119595;
   border-bottom: 1px solid #119595;
-
+  background: white;
+  padding: .3rem;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -102,7 +103,7 @@ export default {
 .grid.editable:hover,
 .grid.editable.active {
   cursor: pointer;
-  border: 4px solid #119595;
+  border: .3rem solid #119595;
 }
 
 .box-left {

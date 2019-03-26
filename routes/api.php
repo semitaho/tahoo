@@ -21,8 +21,13 @@ Route::get('puzzles/{level}', 'PuzzleController@images');
 Route::post('puzzles/scores', 'PuzzleController@scores');
 
 Route::post('sudoku', 'SudokuController@scores');
+Route::get('sudoku/scores/{level}', 'SudokuController@fetchScores');
 
 
 Route::post('user', 'UserController@retrieve');
 Route::put('user', 'UserController@storeNick');
+
+Route::post('nopeustesti', 'NopeustestiController@scores');
+Route::get('nopeustesti/scores', 'NopeustestiController@fetchScores');
+
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="sudoku">
+  <div id="sudoku" class="game-container">
     <start-screen 
       :resume="resume" 
       @resumeGame="resumeGame" 
@@ -21,7 +21,7 @@
       </p>
     </start-screen>
     <sudoku-level v-else-if="gamestate === STATE.playing"/>
-    <div id="level-finished" v-else-if="gamestate === STATE.finished">
+    <div class="level-finished" v-else-if="gamestate === STATE.finished">
       <taho-modal
         :hasNext="true"
         @oncontinue="resumeGame"
@@ -36,7 +36,7 @@
           Pääsit sijalle
           <b>{{position}}.</b>
         </p>
-        <p v-else>Et yltänyt TOP 5:een.</p>
+        <p v-else>Et parantanut sijoitustasi edellisestä.</p>
       </taho-modal>
       <sudoku-level :readonly="true"/>
     </div>
@@ -84,16 +84,8 @@ export default {
 };
 </script>
 <style scoped>
-#level-finished,
-#sudoku {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex: 1;
-}
 
-#level-finished {
+.level-finished {
   width: 100%;
 }
 </style>

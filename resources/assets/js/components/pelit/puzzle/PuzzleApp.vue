@@ -1,5 +1,5 @@
 <template>
-  <div id="puzzle">
+  <div id="puzzle" class="game-container">
     <start-screen
       :resume="resume"
       :disabled="!isSet"
@@ -23,7 +23,7 @@
       </p>
     </start-screen>
     <puzzle-level v-else-if="gamestate === STATE.playing"/>
-    <div id="level-finished" v-else-if="gamestate === STATE.finished">
+    <div class="level-finished" v-else-if="gamestate === STATE.finished">
       <taho-modal
         :hasNext="puzzle.hasNext"
         @oncontinue="startLevel(puzzle.id+1)"
@@ -110,15 +110,6 @@ export default {
 };
 </script>
 <style scoped>
-#level-finished,
-#puzzle {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
 
-#level-finished {
-  width: 100%;
-}
 </style>
 

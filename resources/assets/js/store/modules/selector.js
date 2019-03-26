@@ -7,6 +7,11 @@ const state = {
     image: 'http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Apps-ksudoku-icon.png',
     routeLink: 'sudoku',
     title: 'Sudoku'
+  },
+  {
+    image: 'http://www.ottoojala.com/share/nopeuspeli.png',
+    routeLink: 'nopeustesti',
+    title: 'Nopeustesti'
   }
   ]
 };

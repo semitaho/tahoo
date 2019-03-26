@@ -7,8 +7,8 @@
       </div>
       <div>
         <taho-button type="secondary" :disabled="readonly" size="small" @click="resumeGame" text="Sekoita uudelleen" />
-    </div>
-      <span>{{time}} s</span>
+      </div>
+      <sudoku-leader :position="position"  :time="time" :user="user" :scores="scores"></sudoku-leader>
     </div>
     <div id="sudoku-board">
       <sudoku-square
@@ -36,6 +36,8 @@ import "vue-simple-context-menu/dist/vue-simple-context-menu.css";
 
 import { mapGetters, mapActions } from "vuex";
 import SudokuSquare from "./SudokuSquare";
+import SudokuLeader from "./SudokuLeader";
+
 import { TahoButton } from './../../common';
 import VueSimpleContextMenu from "vue-simple-context-menu";
 
@@ -43,6 +45,7 @@ export default {
   name: "SudokuLevel",
   components: {
     SudokuSquare,
+    SudokuLeader,
     TahoButton,
     VueSimpleContextMenu
   },
@@ -72,8 +75,11 @@ export default {
     },
     ...mapGetters({
       board: "sudoku/board",
+      position: "sudoku/position",
       time: "common/time",
-      level: "common/level"
+      level: "common/level",
+      user: "user/user",
+      scores: "sudoku/scores"
     })
   },
 
@@ -145,6 +151,7 @@ export default {
 
 .title-container {
   display: flex;
+  flex: 2;
   flex-direction: column;
   align-items: flex-start;
 }
