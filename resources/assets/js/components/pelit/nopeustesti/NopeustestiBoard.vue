@@ -5,21 +5,31 @@
         <b>Nopeustesti</b>
       </div>
       <div>
-          <b class="points">{{points}}</b>
+        <b class="points">{{points}}</b>
       </div>
-      <nopeustesti-leader :time="time" :points="points" :scores="scores" />
+      <nopeustesti-leader :time="time" :points="points" :scores="scores"/>
     </div>
     <div class="board-container">
-        <nopeustesti-button :light="isLight(index)" :readonly="readonly" :color="button.color" :index="index" :key="index" v-for="(button, index) in buttons"></nopeustesti-button>
-     </div>
+      <nopeustesti-button
+        :light="isLight(index)"
+        :readonly="readonly"
+        :color="button.color"
+        :index="index"
+        :key="index"
+        v-for="(button, index) in buttons"
+      ></nopeustesti-button>
+    </div>
+    <audio id="light-audio">
+      <source src="resources/assets/audio/elevator.mp3" type="audio/mpeg">Your browser does not support the audio element.
+    </audio>
   </div>
 </template>
 
 <script>
-import NopeustestiLeader from './NopeustestiLeader';
-import NopeustestiButton from './NopeustestiButton';
+import NopeustestiLeader from "./NopeustestiLeader";
+import NopeustestiButton from "./NopeustestiButton";
 
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   name: "NopeustestiBoard",
   props: {
@@ -29,31 +39,40 @@ export default {
     readonly: {
       default: false
     }
-
   },
 
   components: {
-      NopeustestiLeader,
-      NopeustestiButton
+    NopeustestiLeader,
+    NopeustestiButton
   },
 
   computed: mapGetters({
-      time: 'common/time',
-      lightIndex: 'nopeustesti/currentLight',
-      buttons: 'nopeustesti/buttons',
-      points: 'nopeustesti/points',
-      scores: 'nopeustesti/scores'
+    time: "common/time",
+    lightIndex: "nopeustesti/currentLight",
+    buttons: "nopeustesti/buttons",
+    points: "nopeustesti/points",
+    scores: "nopeustesti/scores"
   }),
 
-  methods: {
-      isLight(index) {
-         return this.lightIndex === index;
+  mounted() {
+    let audio = document.querySelector('audio');
+    audio.load();
+    audio.addEventListener('timeupdate', (event) => {
+      if (audio.currentTime > 0.5) {
+        audio.pause();
       }
+    });
+
+  },
+
+  methods: {
+    isLight(index) {
+      return this.lightIndex === index;
+    }
   }
 };
 </script>
 <style scoped>
-
 .game-container {
   width: 100%;
   flex: 1;
@@ -63,19 +82,19 @@ export default {
 }
 
 .board-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    background: yellowgreen;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: yellowgreen;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .board-container > div {
-    margin: 1rem;
+  margin: 1rem;
 }
 
 .points {
-    font-size: 200%;
+  font-size: 200%;
 }
 
 .info-container {

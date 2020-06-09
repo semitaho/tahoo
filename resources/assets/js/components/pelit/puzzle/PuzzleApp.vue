@@ -19,10 +19,10 @@
           :value="user.nickInput"
           placeholder="Anna nimimerkkisi"
           @input="updateNick"
-        >
+        />
       </p>
     </start-screen>
-    <puzzle-level v-else-if="gamestate === STATE.playing"/>
+    <puzzle-level v-else-if="gamestate === STATE.playing" />
     <div class="level-finished" v-else-if="gamestate === STATE.finished">
       <taho-modal
         :hasNext="puzzle.hasNext"
@@ -46,7 +46,7 @@
         </p>
         <p v-else>Et yltänyt TOP 5:een.</p>
       </taho-modal>
-      <puzzle-level :readonly="true"/>
+      <puzzle-level :readonly="true" />
     </div>
   </div>
 </template>
@@ -101,7 +101,7 @@ export default {
       "startLevel"
     ]),
     updateNick(event) {
-      this.$store.dispatch('user/updateNick', event);
+      this.$store.dispatch("user/updateNick", event);
     }
   },
   created() {
@@ -110,6 +110,5 @@ export default {
 };
 </script>
 <style scoped>
-
 </style>
 

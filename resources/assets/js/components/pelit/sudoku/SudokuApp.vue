@@ -85,7 +85,4 @@ export default {
 </script>
 <style scoped>
 
-.level-finished {
-  width: 100%;
-}
 </style>

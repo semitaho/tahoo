@@ -1,5 +1,5 @@
 import api from './../../services/api.service';
-import { STATE, LSKEY_LEVEL } from './../../constaints';
+import { STATE, LEVEL_PUZZLE_KEY } from './../../constaints';
 const shuffle = imageArr => {
   for (let i = imageArr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -35,7 +35,7 @@ const getters = {
   level: state => state.level,
   position: state => state.position,
   placed: state => state.placed,
-  resume: state => !!localStorage.getItem(LSKEY_LEVEL),
+  resume: state => !!localStorage.getItem(LEVEL_PUZZLE_KEY),
   isValid: state => {
     return state.container.every(containerItem => containerItem.number === containerItem.image.number);
   }
@@ -191,7 +191,7 @@ const actions = {
     if (rootGetters['user/nickInput']){
       dispatch('user/storeNick', null, { root: true });
     }
-    const level =  localStorage.getItem('level');
+    const level =  localStorage.getItem(LEVEL_PUZZLE_KEY);
     if (level){
       dispatch('startLevel', level);
     }
@@ -215,7 +215,7 @@ const actions = {
         }
       });
       if (getters.puzzle.hasNext){
-        localStorage.setItem('level', getters.puzzle.id+1);
+        localStorage.setItem(LEVEL_PUZZLE_KEY, getters.puzzle.id+1);
       }
   },
 
@@ -229,7 +229,7 @@ const actions = {
     dispatch('common/startTimer', null, { root: true });
   },
   startGame({ commit, dispatch, rootGetters }) {
-    localStorage.removeItem(LSKEY_LEVEL);
+    localStorage.removeItem(LEVEL_PUZZLE_KEY);
     dispatch('startLevel', 1);
     if (rootGetters['user/nickInput']){
       dispatch('user/storeNick', null, { root: true });

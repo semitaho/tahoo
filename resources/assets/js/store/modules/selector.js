@@ -9,7 +9,7 @@ const state = {
     title: 'Sudoku'
   },
   {
-    image: 'http://www.ottoojala.com/share/nopeuspeli.png',
+    image: 'https://www.nopeustesti.com/img/uutiset/nopeustesteri.png',
     routeLink: 'nopeustesti',
     title: 'Nopeustesti'
   }
