@@ -9,7 +9,7 @@ const state = {
     title: 'Sudoku'
   },
   {
-    image: 'https://www.nopeustesti.com/img/uutiset/nopeustesteri.png',
+    image: 'https://happybeavers.fi/wp-content/uploads/2016/09/nopeustesti1jpeg_copy-e1477227858516.jpg',
     routeLink: 'nopeustesti',
     title: 'Nopeustesti'
   }

@@ -10,7 +10,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 test.html
-
+.env
 .DS_store
 yarn.lock
 composer.lock

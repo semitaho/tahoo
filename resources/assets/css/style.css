@@ -1,6 +1,8 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /** 1. Set default font family to sans-serif. 2. Prevent iOS text size adjust after orientation change, without disabling user zoom. */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+
 
 html {
     font-family: sans-serif; /* 1 */
@@ -522,19 +524,27 @@ body {
     flex: 1;
 }
 
+h1, h2 {
+    font-family: 'Oswald', sans-serif;  
+    font-weight: 700;
+}
+
+h3, h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+}
+
 body {
     padding: 0;
     margin: 0;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #606c71;
+    font-family: 'Work Sans', sans-serif;
+    color: #053642;
     display: flex;
     flex-direction: column;
 }
 
 a {
-    color: #1e6bb8;
+    color: #47dbd4;
     text-decoration: none;
 }
 
@@ -642,7 +652,6 @@ a:hover {
 
 .project-tagline {
     margin-bottom: 1rem;
-    font-weight: normal;
     opacity: 0.7;
 }
 
@@ -746,7 +755,7 @@ a:hover {
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: normal;
-    color: #159957;
+    color:#008a8f;
 }
 
 .main-content p {

@@ -31,6 +31,8 @@
     <meta name="description"
           content="Taho Ohjelmistopalvelut Oy on 2018 perustettu ohjelmistokonsultointiyritys, joka myy yksittäistä suunnittelu- ja kehitysapua asiakkaiden ohjelmistoprojekteihin laadukkaasti ja tehokkaasti yli 10 vuoden kokemuksella."/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="{{ asset('/resources/assets/icons/Tahoo_Logo_Fav.png') }}"/>
+
     @section('styles')
     <link href="{{ asset('/resources/assets/css/style.css') }}" rel="stylesheet"/>
     @show
