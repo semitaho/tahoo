@@ -43,7 +43,7 @@
             <p><strong><em>{!! $blog->abstract !!}</em></strong></p>
         </section>
         <section class="blog-article">
-            <?php include  base_path('/resources/blogs/spa-mpa-universal.html'); ?>
+            <?php include  base_path('/resources/blogs/' .$blog->entry.'.html'); ?>
         </section>
     </article>
     <div class="disqus-content">

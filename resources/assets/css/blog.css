@@ -40,6 +40,10 @@ header {
 
 }
 
+.blog-article {
+    font-size: 90%;
+}
+
 .blog-article table tr th, .blog-article table tr td {
     vertical-align: top;
     padding: 1rem;
