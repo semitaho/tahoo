@@ -43,7 +43,7 @@
             <p><strong><em>{!! $blog->abstract !!}</em></strong></p>
         </section>
         <section class="blog-article">
-            <?php include  base_path('/resources/blogs/' .$blog->entry.'.html'); ?>
+            <?php include  base_path('/resources/blogs/'.$blog->entry.'.html'); ?>
         </section>
     </article>
     <div class="disqus-content">
@@ -78,7 +78,7 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+        js.src = "https://connect.facebook.net/fi_FI/sdk.js#xfbml=1&version=v3.0";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 @endsection

@@ -1,0 +1,78 @@
+<p>
+  Olen ollut mukana pienissä, keskikokoisissa ja suurissa, skaalautuvissa ohjelmistoprojekteissa. Karkeasti voinkin todeta, että tyypillisin edustamani 
+  devaustiimi on koostunut 1 - 5 henkilöstä.  
+</p>
+<p>Mitä pienempi devaustiimi, sitä parempi mahdollisuus projektilla on onnistua. Jos taas olen tuottanut softaa itsenäisesti, yleensä onnistumisprosentti 
+  on ollut suurempi. Jopa projektin aikataulut ovat pitäneet. Tämä osin myös siksi, että olen päässyt <i>face-to-face</i> kommunikoimaan määrittelijän ja 
+  käyttöliittymäsuunnittelijan kanssa, jolloin softaa pystyy tekemään enempi asiakaslähtöisesti. Minulle onnistuneen projektin mittari on ollut se, että
+  asiakas on saanut uudet ominaisuudet ajoissa ja sovellus on virheetön. Olen jopa usein tehdyt ns. <i>trade-offeja</i> ja kerryttänyt teknistä velkaa ihan 
+  vain siksi, että uusi ominaisuus ei myöhästyisi tuotannosta, kun sprintti päättyy. <i>Koska eihän yhden devaajaan sooloprojektissa ketään kiinnosta, miltä koodi näyttää.</i> </p>
+
+<p>Väitän, että yllä kuvaamani lähestymistapa ohjelmistokehityksessä olisi työn tuottavuuden kannalta erittäin tehokas. Toki, virhealtius kasvaa, kun kamaa pushataan tuotantoon vauhdilla.
+   Mutta ongelmat alkavat viimeistään siinä vaiheessa kun tiimin koko kasvaa.</p>
+
+<p>Viittasin alussa sanontaan <i>Ketju on yhtä vahva kuin sen heikoin lenkki</i>, joka voidaan soveltaa ohjelmistoprojektiin <i>Tuote on yhtä vahva kuin 
+  sen heikoin devaaja.</i> Avaan tässä taustoja, mitä ongelmia devaustiimissa tulee tyypillisesti vastaan ja millä tavalla he voivat omalta osaltaan parantaa koko projektielinkaaren laatua.</p>
+
+  <h2>Devaustiimi ja roolit</h2>
+  <p>Nykyään on muotia, että kun devaustiimi kasataan, <i>kaikki osaa tehdä kaikkea.</i> Ei ole erillisiä rooleja, kuten backend-devaaja, frontend-devaaja, tietokanta-asiantuntija tai vaikkapa 
+    devops-asiantuntija. 
+  Välillä jopa UX-suunnittelijan ja frontend-devaajan roolit menevät ristiin.</p>
+  <p>Tästä syntyy pakostikin uusi käsite, <i>feature-devaaja</i>, joka ottaa sprintissä esim. jonkun epic-kokonaisuuden itselleen ja toteuttaa sen alusta loppuun annettujen 
+  speksien perusteella. Tämä on mielestäni todella optimi tilanne. Jokainen tiimissä osaa tehdä full-stack ohjelmointia ja on ikäänkuin riippumaton muista tahoista, jolloin työn esteiden määrä on tehokkaasti saatu 
+minimoitua. </p>
+<p>Ongelmat tulevat vastaan kuitenkin <i>jäykällä asiakkuudella</i>, jossa devaustiimiin kuuluu . Tällöin yksittäisen devaajan skaalautuvuus jää 
+pakostikin puolitiehen, jos asiakkaalta tulee suoraan tiettyyn osa-alueeseen erikoistunut henkilö, joka toteuttaa projektiin liittyviä asioita omassa hiekkalaatikossa.</p>
+<blockquote>Mitäs Kari sulla on tänään työn alla? - No, mä jatkan tuota kentän X pituuden selvittelyä. Näyttäs vähän siltä, että tieto valuu jo lähdejärjestelmästä liian pitkänä. 
+  Mä mietin, että jos vaikka Teemulla olisi joku ajatus tähän, voisko kenties maksimipituus rajata jo itse käyttöliittymän kentässä?  </blockquote>
+
+  <blockquote>Mites, onks Teuvolla mitään esteitä tullut vastaan? -   </blockquote>  
+
+
+  <blockquote>Mites Lasse noi tietovirrat jakselee, onko tullu ? - No, mä jatkan tuota kentän X pituuden selvittelyä. Näyttäs vähän siltä, että tieto valuu jo lähdejärjestelmästä liian pitkänä. 
+    Mä mietin, että jos vaikka Teemulla olisi joku ajatus tähän, voisko kenties maksimipituus rajata jo itse kentässä?  </blockquote>
+    
+  <h2>Sovellusarkkitehtuuri</h2>
+  <p>On selvää, että jos sovellusarkkitehtuuri ei ole kunnossa, eikä kaikilla devaajilla ole ymmärrystä sen toiminnasta, tulee pakostikin ongelmia.
+  
+    <p>Se, mikä usein toistuu ohjelmointityössä, on pyörän keksiminen uudelleen. 
+      Ei ehkä haluta käyttää jo projektissa luotuja käytäntöjä, sovelluskomponentteja tai ei löydetä niitä. Voidaan myös kokea valmiiden komponenttien 
+    käyttö haasteellisena. Jos projekti on ollut jo jonkin aikaa käynnissä ja uusi devaaja tulee projektiin, hän todennäköisesti kyseenalaistaa 
+    monet ratkaisut. On varsin yleistä, että uuden devaajan ja projektissa pitkään olleiden välillä syntyy näkemyseroja arkkitehtuurisista ratkaisuista ja 
+    uudella devaajalla on valmiina näkemys, miten joku tekninen osa-alue tulisi toteuttaa ja mitä teknologioita siinä käyttää. On toki hyvä varsinkin 
+  pitkään jatkuneessa projektissa, että joku tulee ja pyrkii rikkomaan rajoja. </p>
+     
+      <blockquote>Miksi olette kirjoittaneet nämä SQL-lauseet manuaalisesti, miksette käytä Hibernatea?</blockquote>
+
+      <blockquote>Ei tässä tehdä X:llä (sovelluskehys) yhtään mitään, Spring hoitaa suoraan tämän, mä voin näyttää.</blockquote>
+ 
+
+        <p>
+    Ns. liiallista kerrosmaisuutta tulisi jo välttää rakentamisvaiheessa, tosin monella asiakkaalla on jokin talon oma sovelluskehys käytössä, mikä 
+    saattaa määritellä jo 50% kokonaisarkkitehtuuriratkaisusta. Kerrosmainen sovellus vaatii devaajalta itsekuria, jotta jokainen koodirivi täyttää tehtävänsä 
+    eri osa-alueilla. Ja jos tästä ajattelutavasta lipsutaan, niin samalla muutkin devaajat alkavat tekemään enempi vapaamielisempiä ratkaisuja.</p>
+  
+  <p>Jokaisessa ohjelmistoprojektissa olisi hyvä olla ainakin yksi henkilö, joka pystyy kuvailemaan sovellusarkkitehtuurin muille devaajille, eli kenties 
+    jonkinlainen <i>Lead Developer</i> -henkilö, joka ei kuitenkaan ota liian isoa roolia jokaisesta algoritmisesta ratkaisusta, mutta pystyy kuitenkin 
+    palauttamaan devaajan ruotuun, jos lähtee liikaa soveltamaan omia näkemyksiä, jotka poikkeavat arkkitehtuurista</p>
+
+  <h2>Devaajan tehokkuus</h2>  
+
+  <blockquote>Pitää olla tuottavampi!</blockquote>
+
+  <p>Minulle on todettu yo. lausahdus kehityskeskustelussa 10 vuotta sitten. Kyseisessä projektissa tutkin pitkään, kuinka LifeRaylla pystyttäisiin korvaamaan 
+    jo olemassa oleva web-sivusto. Törmäsin moneen ongelma-alueeseen, jonka selvittelyyn minulla kului useita päiviä. Meitä oli pk-seudulla vain pari devaajaa, toimitusjohtaja 
+    oli muun devaustimiin kanssa Tampereen pääkonttorilla. </p>
+
+  <p>Lähes aina sovellusprojektista löytyy joku, yksittäinen henkilö, jonka vuoksi työkokonaisuuden osa-alue myöhästyy. Sprintissä myöhästyminen 
+    kuitataan sillä, että kesken jäänyt työ siirretään seuraavaan sprinttiin. Yleensä työn tehokkuutta mietitään tiimin, ei yksittäisen devaajan, 
+    näkökulmasta, jolloin itse kokonaisuus näyttääkin hyvälle perustuen muiden devaajien saavutuksiin.</p>  
+    <p>On myös niin, ettei jatkuvaan työn myöhästelyyn edes kiinnitetä huomiota. Tiimiajattelun kannalta muut devaajat pyrkivät toki työkiireittensä
+       keskeltä auttamaan keskeneräisen työn saattamisessa maaliin asti. Yleisesti ottaen, työn etenemista pyritään seuraamaan esim. päivittäisissä Daily-tilaisuuksissa. 
+       Devaaja, jonka työ alkaa näyttämään venymisen merkkeja, pystyy hyvinkin helposti kertomaan Scrum Masterille sen, että työ "pikkuhiljaa" etenee viitaten
+       pieniin, edistyneisiin osa-alueisiin, kuten <i>kantaoikeuksien saamiseen</i>, <i>saavansa vihdoin tunnukset palveluun, joka tarjoaa tietoa</i> yms. Koko 
+       sprintin näkökulmasta pitäisi siis pystyä skaalamaan edistyneet työvaiheet työtehtävän kokonaisuuteen, eikä välttämättä hyppiä riemusta. Kuka nyt 
+       Dailyssä kehtaisi suoraan sanoa, että työ junnaa paikallaan? </p>
+
+    
+  <h2>Byrokratia</h2>     

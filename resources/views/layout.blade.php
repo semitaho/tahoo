@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html moznomarginboxes mozdisallowselectionprint lang="fi_FI">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap" rel="preload" as="style" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="preload" as="style" />
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122479437-1"></script>
     <script>
@@ -34,6 +37,9 @@
     <link rel="icon" type="image/png" href="{{ asset('/resources/assets/icons/Tahoo_Logo_Fav.png') }}"/>
 
     @section('styles')
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet" />
+
     <link href="{{ asset('/resources/assets/css/style.css') }}" rel="stylesheet"/>
     @show
 

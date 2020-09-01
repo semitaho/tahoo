@@ -18,7 +18,7 @@
 }
 
 .blog-content {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 header {
@@ -41,7 +41,7 @@ header {
 }
 
 .blog-article {
-    font-size: 90%;
+    font-size: 80%;
 }
 
 .blog-article table tr th, .blog-article table tr td {
@@ -50,4 +50,8 @@ header {
     border: 1px solid #e9ebec !important;
 
 
+}
+
+blockquote {
+    font-style: italic;
 }
