@@ -16,5 +16,4 @@ yarn.lock
 composer.lock
 .editorconfig
 .gitattributes
-public
 vendor
