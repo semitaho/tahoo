@@ -13,6 +13,5 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: tahoo
-	  docker_heroku_process_type: web	
           heroku_email: tojuaho@gmail.com
           usedocker: true
