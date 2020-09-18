@@ -13,7 +13,6 @@ test.html
 .env
 .DS_store
 yarn.lock
-composer.lock
 .editorconfig
 .gitattributes
 vendor
