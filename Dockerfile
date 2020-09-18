@@ -4,5 +4,5 @@ COPY . tahoo
 WORKDIR tahoo
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 RUN composer install
-COPY .env /tahoo/.env
+COPY .envdocker /tahoo/.env
 CMD ["php", "artisan", "serve", "--host", "0.0.0.0"]
