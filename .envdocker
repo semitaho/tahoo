@@ -1,5 +1,5 @@
 APP_NAME=Laravel
-APP_ENV=local
+APP_ENV=production
 APP_KEY=base64:RfG4AVnZKukgMhYy5YGOGKHJ8JJTJLxCOM8q/px+Ws0=
 APP_DEBUG=true
 APP_URL=http://localhost
