@@ -28,7 +28,7 @@
 
     <p>Jokainen intohimoinen koodari harrastaa omia projektejaan. Alla pari esimerkkiä, mitä olen toteuttanut.</p>
     <h3>Taho-forms</h3>
-    <p>Angular 5 -teknologialla toteutettu lomakemoottorikirjasto, jonka toteutin vuonna 2019 nykyiseen julkishallinnon projektiin.
+    <p>Angular 5 -teknologian avulla kehitetty lomakemoottorikirjasto, jonka toteutin vuonna 2019 nykyiseen julkishallinnon projektiin.
     Kirjaston avulla yhtenäistettiin eri lomakkeiden käyttö kyseisessä järjestelmässä. </p>
 
     <p>Kirjasto toimii siten, että komponentille määritellään <i>deklaratiivisesti</i> JSON-olio, joka generoi käyttöliittymään määritteiden mukaisen lomakkeen.
