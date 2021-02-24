@@ -20,8 +20,8 @@
     <p>2010-luvulta lähtien osaamiseni on laajentunut yhä vahvemmin selainpään teknologioihin, kiitos edellisen työnantajani. Voinkin
         luonnehtia itseäni tätä nykyä puhtaasti <em>Full-Stack kehittäjäksi</em> lievällä palvelinpään painotuksella.
     </p>
-    <p>
-        Tarkemmin pääset tutustumaan profiiliini avaamalla <a href="/cv">ansioluetteloni.</a></p>
+    <p>Nykyisin suurimmat kiinnostuksen kohteeni ovat ohjelmistoarkkitehtuuri, sovelluksen tekninen suunnittelu sekä arkkitehtikeskeinen kehittäminen.</p>
+    <p>Tarkemmin pääset tutustumaan profiiliini avaamalla <a href="/cv">ansioluetteloni.</a></p>
 
 
     <h2 class="margin-spacer">Omat projektit</h2>
