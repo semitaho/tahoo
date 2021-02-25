@@ -52,8 +52,8 @@
             @foreach ($navigation as $item)
             <li class="{{Request::path() === $item['path'] ? 'active list-item': 'list-item'}}"><a href="{{url($item['path'])}}">{{ $item['label']}} </a>@if ($item['new']) <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/128/star-icon.png" alt="Uutta" /> @endif
             @endforeach
-            <li><a target="_blank" href="https://www.facebook.fi/tahoohjelmistopalvelut"><img width="25" class="middle" src="{{ asset('/resources/assets/images/flogo-RGB-HEX-Blk-58.svg')}}" /></a></li>
-            <li><a target="_blank" href="https://www.linkedin.com/company/taho-software-services-ltd"><img width="30" class="middle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" /></a></li>
+            <li><a target="_blank" href="https://www.facebook.fi/tahoohjelmistopalvelut"><img width="25" class="middle" alt="facebook" src="{{ asset('/resources/assets/images/flogo-RGB-HEX-Blk-58.svg')}}" /></a></li>
+            <li><a target="_blank" href="https://www.linkedin.com/company/taho-software-services-ltd"><img width="30" height="auto" alt="linkedin" class="middle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" /></a></li>
 
         </ul>
 
