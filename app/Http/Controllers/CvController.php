@@ -18,8 +18,11 @@ class CvController
     {
         $skills = DB::table('skill_category')
             ->join('skill', 'skill_category.id', '=', 'skill.skill_category_id')
-            ->select('skill_category.id as skill_category_id', 'skill_category.name_fi as category_name', 'skill.id as skill_id', 'skill.name_fi as skill_name', 'skill.experience')
+            ->select('skill_category.id as skill_category_id', 'skill_category.name_fi as category_name', 'skill.id as skill_id', 'skill.name_fi as skill_name', 'skill.experience', 'skill.last_used')
             ->orderBy('priority')
+
+            ->orderBy('last_used', 'desc')
+            ->orderBy('experience', 'desc')
             ->orderBy('skill.id')
             ->get();
         $results = array();
@@ -112,7 +115,7 @@ class CvController
 
     private function create_skill($skill)
     {
-        return array("skill_name" => $skill->skill_name, "experience" => $skill->experience);
+        return array("skill_name" => $skill->skill_name, "experience" => $skill->experience, "last_used" => $skill->last_used);
     }
 
     public function find_category_index($results, $category_id)

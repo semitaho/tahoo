@@ -73,15 +73,20 @@ CV
         @component('title')
         Kokemus
         @endcomponent
+        
         @foreach($skill_categories as $index => $category)
         <div class="grid-container grid-category  {{$index === 3 ? 'page-section-break': ''}}">
             <div><h4>{{$category['category_name']}}</h4></div>
             <div class="grid-container grid-skill">
                 <div></div>
                 <div class="header"><strong><em>Kokemus</em></strong></div>
+                <div class="header"><strong><em>Viimeksi käyttänyt</em></strong></div>
+
                 @foreach($category['items'] as $skill)
                 <div class="skill"><em>{{$skill['skill_name']}}</em></div>
                 <div class="experience">{{$skill['experience']}} vuotta</div>
+                <div class="last-used center">{{$skill['last_used']}}</div>
+
                 @endforeach
             </div>
 
@@ -90,6 +95,7 @@ CV
 
 
     </div>
+
     <hr/>
     <div class="grid-container grid-projects page-break">
         @component('title')
