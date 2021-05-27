@@ -69,14 +69,17 @@ CV
         @endforeach
     </div>
     <hr/>
-    <div class="grid-container grid-experience">
+    
         @component('title')
         Kokemus
         @endcomponent
-        
         @foreach($skill_categories as $index => $category)
-        <div class="grid-container grid-category  {{$index === 3 ? 'page-section-break': ''}}">
-            <div><h4>{{$category['category_name']}}</h4></div>
+        @if (($index +1 ) % 3 === 0)
+            <div class="page-section-break" />
+        @endif
+
+        <div class="grid-container grid-category">
+            <h4 class="mb-0">{{$category['category_name']}}</h4>
             <div class="grid-container grid-skill">
                 <div></div>
                 <div class="header"><strong><em>Kokemus</em></strong></div>
@@ -94,15 +97,18 @@ CV
         @endforeach
 
 
-    </div>
+    
 
     <hr/>
-    <div class="grid-container grid-projects page-break">
-        @component('title')
+    <div class="page-break" />
+    @component('title')
         Asiakasprojektit
         @endcomponent
-        @foreach($projects as $project)
-
+       
+    @foreach($projects as $index => $project)
+        @if (($index +1 ) % 3 === 0)
+            <div class="page-section-break" />
+        @endif
         <div class="grid-container grid-project">
             <div class="grid-title"><h4>{{$project['name_fi']}}</h4></div>
             <div class="grid-container grid-project-desc">
@@ -124,11 +130,8 @@ CV
 
         </div>
         @endforeach
-
-
-    </div>
     <hr/>
-    <div class="grid-container">
+    <div class="grid-container page-break">
         @component('title')
         Sertifikaatit
         @endcomponent

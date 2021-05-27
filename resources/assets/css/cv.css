@@ -30,11 +30,19 @@
 }
 
 .grid-category{
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr;
+}
+
+.grid-category:not(:last-child) {
+    margin-bottom: 2em;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
 }
 
 .grid-skill {
-    grid-template-columns: 3fr 2fr 2fr;
+    grid-template-columns: 4fr 2fr 2fr;
     margin-bottom: 1em;
 
 }
@@ -74,7 +82,7 @@
 }
 
 .grid-certificate {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
 }
 
 .main-content {
@@ -94,12 +102,12 @@
 
     .page-break {
         page-break-before: always;
-        margin-top: 1.6cm;
+        margin-top: 1cm;
     }
 
     .page-section-break {
         page-break-before: always;
-        margin-top: 3.2cm;
+        margin-top: 1cm;
     }
 
 

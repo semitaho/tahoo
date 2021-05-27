@@ -86,24 +86,27 @@ class CvController
 
     private function fetch_certificates()
     {
-        return $this->fetch_by_table('certificate');
-
+       return array_map(array($this, 'mapResultsToArray'), DB::table('certificate')
+        ->orderBy('acquired', 'desc')
+        ->get()
+        ->toArray());
     }
 
     private function fetch_by_table($table_name)
     {
-        return array_map(function ($project) {
-            $projectArr = array();
-
-            foreach ($project as $attribute => $value) {
-                $projectArr[$attribute] = $value;
-            }
-
-            return $projectArr;
-
-        }, DB::table($table_name)
+        return array_map(array($this, 'mapResultsToArray'), DB::table($table_name)
             ->get()
             ->toArray());
+    }
+
+    private function mapResultsToArray($results){
+        $projectArr = array();
+
+        foreach ($results as $attribute => $value) {
+            $projectArr[$attribute] = $value;
+        }
+
+        return $projectArr;
     }
 
     public function add_skill(&$category, $skill)
