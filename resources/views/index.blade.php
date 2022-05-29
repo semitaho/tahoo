@@ -10,7 +10,7 @@
     <h2>Yritykseni</h2>
     <p>Taho Ohjelmistopalvelut Oy on 2018 perustamani ohjelmistokonsultointiyritys. Myyn yksittäistä suunnittelu-, arkkitehti- ja
         kehitysosaamista
-        asiakkaitteni ohjelmistoprojekteihin <em>laadukkaasti</em> ja <em>tehokkaasti</em> yli 10 vuoden kokemuksella.</p>
+        asiakkaitteni ohjelmistoprojekteihin <em>laadukkaasti</em> ja <em>tehokkaasti</em> yli 15 vuoden kokemuksella.</p>
 
     <h2 class="margin-spacer">Osaamiseni</h2>
     <p>Laaja-alainen osaamiseni perustuu vuosien saatossa kertyneeseen kokemukseen erilaisista ohjelmointikielistä ja
