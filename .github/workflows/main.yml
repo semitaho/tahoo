@@ -15,6 +15,6 @@ jobs:
           host: hotelli03.domainhotelli.fi
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          port: 22
           source: "tests/a.txt,tests/b.txt"
           target: "test"
