@@ -1,34 +1,23 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-    },
-    "devDependencies": {
-        "axios": "^0.18",
-        "bootstrap": "4.3.1",
-        "cross-env": "^5.2.0",
-        "jquery": "^3.2",
-        "laravel-mix": "^2.0",
-        "lodash": "^4.17.19",
-        "popper.js": "^1.14.7",
-        "vue": "^2.5.7"
-    },
-    "dependencies": {
-        "mobile-drag-drop": "^2.3.0-rc.1",
-        "node-sass": "^4.14.1",
-        "semantic-ui-vue": "^0.4.2",
-        "sweet-modal-vue": "^2.0.0",
-        "v-autocomplete": "^1.8.2",
-        "vue-analytics": "^5.16.1",
-        "vue-router": "3.3.2",
-        "vue-select": "^2.5.1",
-        "vue-simple-context-menu": "^3.1.0",
-        "vuex": "3.4.0"
-    }
+	"name": "tahoo",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@fontsource/fira-mono": "^4.5.10",
+		"@neoconfetti/svelte": "^1.0.0",
+		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/kit": "^1.0.0",
+		"@types/cookie": "^0.5.1",
+		"svelte": "^3.54.0",
+		"svelte-check": "^2.9.2",
+		"typescript": "^4.9.3",
+		"vite": "^4.0.0"
+	},
+	"type": "module"
 }
