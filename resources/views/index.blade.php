@@ -27,7 +27,7 @@
     <h2 class="margin-spacer">Omat projektit</h2>
 
     <p>Jokainen intohimoinen koodari harrastaa omia projektejaan. Alla pari esimerkkiä, mitä olen toteuttanut.</p>
-    <h3>Taho-forms</h3>
+    <h3>tforms</h3>
     <p>Angular 5 -teknologian avulla kehitetty lomakemoottorikirjasto, jonka toteutin vuonna 2019 nykyiseen julkishallinnon projektiin.
     Kirjaston avulla yhtenäistettiin eri lomakkeiden käyttö kyseisessä järjestelmässä. </p>
 
