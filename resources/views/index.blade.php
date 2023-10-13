@@ -25,23 +25,9 @@
 
 
     <h2 class="margin-spacer">Omat projektit</h2>
-
-    <p>Jokainen intohimoinen koodari harrastaa omia projektejaan. Alla pari esimerkkiä, mitä olen toteuttanut.</p>
-    <h3>tforms</h3>
-    <p>Angular 5 -teknologian avulla kehitetty lomakemoottorikirjasto, jonka toteutin vuonna 2019 nykyiseen julkishallinnon projektiin.
-    Kirjaston avulla yhtenäistettiin eri lomakkeiden käyttö kyseisessä järjestelmässä. </p>
-
-    <p>Kirjasto toimii siten, että komponentille määritellään <i>deklaratiivisesti</i> JSON-olio, joka generoi käyttöliittymään määritteiden mukaisen lomakkeen.
-       Kyseinen kirjasto sisältää myös <i>lomake-editorin</i> esim. substanssin ylläpitoa varten. Kirjasto on helposti laajennettavissa erilaisia <i>teemoja</i> varten. 
-
-    <p>Kirjaston avulla on todella helppo generoida ja integroida toimivia, dynaamisia lomakkeita olemassa olevaan tietojärjestelmän kehitysprojektiin. Tämä puolestaan parantaa 
-    tuottavuutta, koska varsinaisia käyttöliittymälomakkeita ei itse tarvitse toteuttaa. Laaja kustomointi mahdollistaa sen, että kirjaston voi räätälöidä nimenomaan oman projektin tarpeisiin.</p>
-    <p>Jos aloit kiinnostumaan, kysy minulta <a href="#yhteystiedot">lisää!</a></p> 
+    <p>Jokainen intohimoinen koodari harrastaa omia projektejaan. Alla eräs esimerkeistä, jonka olen toteuttanut.</p>
     <h3>SuperLender</h3>
-    <p>Toteutin <a target="_blank"
-                                                                                                    href="https://www.superlender.fi/">SuperLender</a>-vertaislainasovelluksen
-    
-     täysin itsenäisesti alusta tuotantoon. Ja mikä parasta, sain valita uusimmat mahdolliset teknologiat, <em>Angular 5</em> ja <em>Clojure</em>.
+    <p>Toteutin <a target="_blank" href="https://www.superlender.fi/">SuperLender</a>-vertaislainasovelluksen täysin itsenäisesti alusta tuotantoon. Ja mikä parasta, sain valita uusimmat mahdolliset teknologiat, <em>Angular 5</em> ja <em>Clojure</em>.
     </p>
 
     <p>Voit myös tutustua muihin projekteihini <a href="https://github.com/semitaho">GitHub</a>-sivustoltani.</p>
