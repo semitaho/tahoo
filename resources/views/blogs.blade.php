@@ -11,15 +11,17 @@ Blogikirjoitukset
 <div class="blogs text-center">
     @if (count($blogs) > 0)
     @foreach($blogs as $blog)
-    <div class="blog-summary">
+    <a  href={{$blog->link}} class="blog-summary">
         <div class="blog-header">
-            <em>{{$blog->created}}</em><br />
-
-            <b>{{$blog->title}}</b>
-
+            <img class="blog-image" src={{$blog->image}}></img>
         </div>
-        <div class="blog-content">{{$blog->abstract}}</div>
-    </div>
+        <div class="blog-content">
+            <h2>
+                {{$blog->title}}</a>
+            </h2>
+            <em>{{date('d.m.Y', strtotime($blog->created))}}</em>
+        </div>
+    </a>
     @endforeach
 
     @else

@@ -12,6 +12,19 @@ h2, .text-center {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     line-clamp: 3;
-    overflow: hidden;
-    max-height: 4em;
+    
+}
+
+.blog-content h2 {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
+
+.blog-content a {
+    color: black;
+}
+
+.blog-image {
+    width: 300px;
+    height: auto;
 }
