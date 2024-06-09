@@ -20,6 +20,10 @@ h2, .text-center {
     margin-bottom: 0rem;
 }
 
+a.blog-summary:hover {
+    text-decoration: none;
+}
+
 .blog-content a {
     color: black;
 }
