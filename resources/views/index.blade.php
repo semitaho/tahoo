@@ -23,6 +23,15 @@
     <p>Nykyisin suurimmat kiinnostuksen kohteeni ovat ohjelmistoarkkitehtuuri, sovelluksen tekninen suunnittelu sekä arkkitehtikeskeinen kehittäminen.</p>
     <p>Tarkemmin pääset tutustumaan profiiliini avaamalla <a href="/cv">ansioluetteloni.</a></p>
 
+    <h2 class="margin-spacer">Blogit</h2>
+    <p>Pyrin jakamaan karttunutta osaamistani  LinkedIn-artikkelien muodossa. Tuoreimmat 
+       artikkelitekstit löytyvät <a href="/blogit">Blogit-osiosta</a> sekä yritykseni 
+       <a target="_blank" href="https://www.linkedin.com/company/69741038/admin/feed/posts/">LinkedIn-sivulta</a>
+</p>
+<p>In English: I've written some technical articles which can be found from <a href="/blogit">Blogit-section</a> 
+and from my company's 
+       <a target="_blank" href="https://www.linkedin.com/company/69741038/admin/feed/posts/">LinkedIn-page</a>
+</p>    
 
     <h2 class="margin-spacer">Omat projektit</h2>
     <p>Jokainen intohimoinen koodari harrastaa omia projektejaan. Alla eräs esimerkeistä, jonka olen toteuttanut.</p>
