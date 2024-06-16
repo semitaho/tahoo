@@ -18,3 +18,11 @@ jobs:
           port: 22
           source: "routes,resources"
           target: "public_html"
+        uses: appleboy/scp-action@master
+        with:
+          host: hotelli03.domainhotelli.fi
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          source: "app/http"
+          target: "public_html/app/http"   
