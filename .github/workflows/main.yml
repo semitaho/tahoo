@@ -16,12 +16,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          source: "routes,resources"
+          source: "routes,resources,app"
           target: "public_html"
-        with:
-          host: hotelli03.domainhotelli.fi
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: 22
-          source: "app/http"
-          target: "public_html/app/http"   
