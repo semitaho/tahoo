@@ -2,9 +2,22 @@ h2, .text-center {
     text-align: center;
 }
 
+.main-content {
+    width: auto;
+}
+
 .blog-summary {
     display: grid;
+    border-bottom: 1px dashed  #eff0f1;
+    padding: 1.5rem;
 }
+.blog-summary:last-child {
+    border-bottom: none;
+    margin-bottom: 1rem;
+
+}
+
+
 
 .blog-content {
     text-overflow: ellipsis;
@@ -21,7 +34,7 @@ h2, .text-center {
 }
 
 a.blog-summary:hover {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .blog-content a {

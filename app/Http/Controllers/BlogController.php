@@ -20,7 +20,9 @@ class BlogController
     function index()
     {
        
-        $blogs = DB::table('blog')->where('published', 1)->get();
+        $blogs = DB::table('blog')->where('published', 1)
+        ->orderBy('created', 'desc')
+        ->get();
         return view('blogs', ['blogs' => $blogs]);
     }
 
