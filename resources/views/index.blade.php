@@ -7,10 +7,13 @@
 @section('title', 'Tehokasta ohjelmistokonsultointia yli 10 vuoden kokemuksella')
 @section('content')
 
-    <h2>Yritykseni</h2>
-    <p>Taho Ohjelmistopalvelut Oy on 2018 perustamani ohjelmistokonsultointiyritys. Myyn yksittäistä suunnittelu-, arkkitehti- ja
+    <h2>Autan yrityksiä tehostamaan ohjelmistokehitystä – nopeasti ja kustannustehokkaasti</h2>
+    <p>Taho Ohjelmistopalvelut Oy on 2018 perustamani ohjelmistokonsultointiyritys. 
+    Olen kokenut IT-freelancer ja toteutan räätälöityjä ohjelmistoratkaisuja, jotka tuottavat mitattavaa hyötyä.</p>
+   
+   <p>Myyn yksittäistä suunnittelu-, arkkitehti- ja
         kehitysosaamista
-        asiakkaitteni ohjelmistoprojekteihin <em>laadukkaasti</em> ja <em>tehokkaasti</em> yli 15 vuoden kokemuksella.</p>
+        asiakkaitteni ohjelmistoprojekteihin <em>laadukkaasti</em> ja <em>tehokkaasti</em> jo 20 vuoden kokemuksella.</p>
 
     <h2 class="margin-spacer">Osaamiseni</h2>
     <p>Laaja-alainen osaamiseni perustuu vuosien saatossa kertyneeseen kokemukseen erilaisista ohjelmointikielistä ja
